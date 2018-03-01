@@ -1,0 +1,188 @@
+<!--python manage.py runserver 0.0.0.0:8000-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/jquery-3.3.1.js"></script>
+</head>
+<style>
+    input{
+        max-width: 100px;
+    }
+</style>
+<body>
+    <div>
+        <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+        <script type="text/javascript">
+            document.write(returnCitySN["cip"]+','+returnCitySN["cname"])
+        </script>
+        <h3>数据测试页</h3>
+        <p id="wir"></p>
+        <input type="text" name="account" placeholder="账号">
+        <input type="text" name="username" placeholder="用户名">
+        <input type='password' name="pwd" placeholder="密码">
+        <input style="max-width: 150px" type="email" name="email" placeholder="邮箱">
+        <label><input type="radio" name="gender" value="1">男</label>
+        <label><input type="radio" name="gender" value="2">女</label>
+        <input type="number" name="age">年龄
+        <button onclick="getEmailCode()">获取验证码</button>
+        <input type="text" name="emailcode" placeholder="验证码">
+        <button onclick="registered()">注册</button>
+        <br>
+        <input type="text" name="loginAccount" placeholder="用户账号">
+        <input type="password" name="loginPwd" placeholder="密码">
+        <button onclick="login()">login用户登录测试</button>
+        <br>
+        <input type="text" name="token" placeholder="粘贴token">
+        <button onclick="tokenLogin()">使用token令牌 && ip地址登陆</button>
+        <br>
+        <!--<button onclick="getSubmit()">get提交测试</button>-->
+        <!--<button onclick="postSubmit()">post提交测试</button>-->
+        <!--<br>-->
+        <!--<input type="email" placeholder="接受邮件" name="smtp">-->
+        <!--<button onclick="goEmail()">发送邮件</button>-->
+        <input type="text" name="searchMovie" placeholder="输入电影">
+        <button onclick="search_movie()">点击索搜</button>
+    </div>
+</body>
+<script>
+    wir = $('#wir')
+    function getSubmit() {
+        $.ajax({
+            url:'http://localhost:8000/',
+            type:'GET',
+            data:{'a':222,'b':333},
+            success:function (data) {
+                wir.html(data)
+            },
+            error:function (err) {
+                wir.html(err)
+            }
+        })
+    }
+    function postSubmit() {
+        $.ajax({
+            url:'http://localhost:8000/',
+            type:'POST',
+            data:{'a':123,'b':232},
+            success:function (data) {
+                wir.html(data)
+            },
+            error:function (err) {
+                wir.html(err)
+            }
+        })
+    }
+    function login() {
+        $.ajax({
+            url:'http://localhost:8000/login',
+            type:'POST',
+            data:{
+                'account':$("input[name='loginAccount']").val(),
+                'pwd':$("input[name='loginPwd']").val(),
+                'token':'',
+                'ip':returnCitySN["cip"]
+            },
+            success:function (data) {
+                console.log(data);
+                wir.html('登录成功')
+            },
+            error:function (err) {
+                console.log(err)
+                wir.html('报错')
+            }
+        })
+    }
+    function registered() {
+        var account = $("input[name='account']").val()
+        var emailcode = $("input[name='emailcode']").val()
+        $.ajax({
+            url:'http://localhost:8000/registered',
+            type:'POST',
+            data:{
+                'account':account,
+                'code':emailcode
+            },
+            success:function (data) {
+                console.log(data);
+                wir.html(data)
+            },
+            error:function (err) {
+                console.log(err);
+                wir.html(err)
+            }
+        })
+    }
+    function getEmailCode() {
+        var account = $("input[name='account']").val()
+        var username = $("input[name='username']").val()
+        var pwd = $("input[name='pwd']").val()
+        var email = $("input[name='email']").val()
+        var gender = $("input[name='gender']:checked").val()
+        var age =$("input[name='age']").val()
+        $.ajax({
+            url:'http://localhost:8000/getEmailCode',
+            type:'POST',
+            // data:{'ecode':$("input[name='emailcode']").val()},
+            data:{
+                'account':account,
+                'name':username,
+                'pwd':pwd,
+                'email':email,
+                'gender':gender,
+                'age':age
+            },
+            success:function (data) {
+                wir.html(data)
+            },
+            error:function (err) {
+                wir.html('出错',err)
+            }
+        })
+    }
+    function tokenLogin() {
+        var token = $("input[name='token']").val()
+        $.ajax({
+            url:'http://localhost:8000/tokenlogin',
+            type:'POST',
+            data:{
+                'token':token,
+                'ip': '222.172.220.14'
+                // 'ip':returnCitySN["cip"]
+            },
+            success:function (data) {
+                wir.html('登陆成功');
+                console.log(data)
+            },
+            error:function (err) {
+                wir.html(err);
+                console.log('登录失败')
+            }
+        })
+    }
+    function search_movie() {
+        var info = $("input[name='searchMovie']").val()
+        if (info.length > 0){
+            $.ajax({
+            url:'http://localhost:8000/search',
+            type:'POST',
+            data:{
+                'movie':info
+            },
+            success:function (data) {
+                wir.html(data)
+                console.log(data)
+            },
+            error:function (err) {
+                wir.html(err)
+                console.log(err)
+            }
+        })
+        }else {
+            alert('禁止提交空值')
+        }
+
+    }
+</script>
+</html>
