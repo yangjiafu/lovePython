@@ -140,10 +140,13 @@ def registered(request):
 
 @csrf_exempt
 def search(request):
-    if request.POST:
+    # print json.loads(request.body), 1
+    if request.method == 'POST':
+        # print '2'
         try:
+            # req = simplejson.loads(request.raw_post_data)
             movie = request.POST['movie']
-            # print movie
+            # print '3', movie
             if len(movie) > 0:
                 movies = TbMovies.objects.filter(m_name__contains=movie)
                 info = []
@@ -156,3 +159,5 @@ def search(request):
                 return HttpResponse('err')
         except:
             return HttpResponse('search err')
+    else:
+        return HttpResponse('post err')
