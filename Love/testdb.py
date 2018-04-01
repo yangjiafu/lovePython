@@ -7,10 +7,16 @@ from App.models import TbMovies, TbUsers
 # from App.models import *
 from django.conf import settings
 from django.core.mail import send_mail
+# 上传图片添加项
+from django import forms
+from django.shortcuts import render
+import Image
+
 import settings
 import threading
 import hashlib
 import os
+
 
 # name = ''
 # pwd = ''
@@ -154,10 +160,29 @@ def search(request):
                     ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': i.m_cover, 'actor': i.m_actor, 'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
                            'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score, 'synopsis': i.m_synopsis, 'linkInfo': i.m_linkinfo}
                     info.append(ins)
+                print '输出请求..'
                 return HttpResponse(json.dumps(info), content_type='application/json')
             else:
-                return HttpResponse('err')
+                return HttpResponse('Too short')
         except:
             return HttpResponse('search err')
     else:
         return HttpResponse('post err')
+
+
+@csrf_exempt
+def uploadImg(request):
+    if request.method == 'POST':
+        photo = request.FILES['uploadFile']
+        if photo:
+            # phototime = str(time.time()).split('.')[0]
+            # photo_last = str(photo).split('.')[-1]
+            photoname = '%s' % (photo._name)
+            img = Image.open(photo)
+            img.save(photoname)
+            return HttpResponse('upload success')
+        else:
+            return HttpResponse('upload error')
+    # print request
+    # uf = NormalUserForm(request.POST, request.FILES)
+    # pass

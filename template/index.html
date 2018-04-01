@@ -13,10 +13,10 @@
 </style>
 <body>
     <div>
-        <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-        <script type="text/javascript">
-            document.write(returnCitySN["cip"]+','+returnCitySN["cname"])
-        </script>
+        <!--<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>-->
+        <!--<script type="text/javascript">-->
+            <!--document.write(returnCitySN["cip"]+','+returnCitySN["cname"])-->
+        <!--</script>-->
         <h3>数据测试页</h3>
         <p id="wir"></p>
         <input type="text" name="account" placeholder="账号">
@@ -42,8 +42,16 @@
         <!--<br>-->
         <!--<input type="email" placeholder="接受邮件" name="smtp">-->
         <!--<button onclick="goEmail()">发送邮件</button>-->
-        <input type="text" name="searchMovie" placeholder="输入电影">
+        <input type="text" name="searchMovie" placeholder="输入电影名">
         <button onclick="search_movie()">点击索搜</button>
+        <!--<br>-->
+        <!--<input type="number" name="searchMovieId" placeholder="输入电影的ID">-->
+        <!--<button onclick="search_movieID()">点击搜索</button>-->
+
+        <form enctype="multipart/form-data" id="uploadForm">
+            <input type="file" name="uploadFile" id="upload_file" style="margin-bottom:10px;">
+            <input type="button" id="uploadPicButton" value="上传" onclick="uploadPic()">
+        </form>
     </div>
 </body>
 <script>
@@ -182,6 +190,45 @@
         }else {
             alert('禁止提交空值')
         }
+
+    }
+    // function search_movieID() {
+    //     var info = $("input[name='searchMovieId']").val()
+    //     if(info.length>0){
+    //         $.ajax({
+    //             url:'http://localhost:8000/search',
+    //             type:'POST',
+    //             data:{
+    //                 'type':'id',
+    //                 'id':info
+    //             },
+    //             success:function (data) {
+    //                 console.log(data)
+    //             },
+    //             error:function (err) {
+    //                 console.log(err)
+    //             }
+    //         }
+    //         )
+    //     }
+    // }
+    // url:'http://localhost:8000/uploadImg',
+    function uploadPic(){
+        var pic = $('#upload_file')[0].files[0];
+        var fd = new FormData();
+        fd.append('uploadFile', pic);
+        $.ajax({
+            url:"http://localhost:8000/uploadImg",
+            type:"POST",
+            // Form数据
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                alert("更新成功");
+            }
+        });
 
     }
 </script>

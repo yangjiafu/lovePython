@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^registered', testdb.registered),
     url(r'^getEmailCode', testdb.getEmailCode),
     url(r'^search', testdb.search),
+    url(r'^uploadImg', testdb.uploadImg)
 ]
