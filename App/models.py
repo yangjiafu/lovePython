@@ -67,3 +67,12 @@ class TbUsers(models.Model):
     class Meta:
         managed = False
         db_table = 'tb_users'
+
+
+class TbVideo(models.Model):
+    v_path = models.FileField(max_length=30, blank=True, null=True, upload_to='./uploadFile')
+    v_name = models.CharField(primary_key=True, max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'tb_video'

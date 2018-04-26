@@ -15,17 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from . import view, testdb
+# from . import view
+from App import views
 
 urlpatterns = [
-    url(r'^hello$', view.hello),
-    url(r'^$', testdb.usersdb),
+    # url(r'^hello$', views.hello),
+    url(r'^$', views.usersdb),
     url(r'^admin/', admin.site.urls),
-    url(r'^login$', testdb.userlogin),
-    url(r'^tokenlogin', testdb.tokenLogin),
-    # url(r'^goEmail', testdb.doemail),
-    url(r'^registered', testdb.registered),
-    url(r'^getEmailCode', testdb.getEmailCode),
-    url(r'^search', testdb.search),
-    url(r'^uploadImg', testdb.uploadImg)
+    url(r'^login$', views.userlogin),
+    url(r'^tokenlogin', views.tokenLogin),
+    # url(r'^goEmail', views.doemail),
+    url(r'^registered', views.registered),
+    url(r'^getEmailCode', views.getEmailCode),
+    url(r'^search', views.search),
+    url(r'^uploadImg', views.uploadImg),
+    url(r'^uploadVideo', views.uploadVideo)
 ]

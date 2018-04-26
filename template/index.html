@@ -50,7 +50,11 @@
 
         <form enctype="multipart/form-data" id="uploadForm">
             <input type="file" name="uploadFile" id="upload_file" style="margin-bottom:10px;">
-            <input type="button" id="uploadPicButton" value="上传" onclick="uploadPic()">
+            <input type="button" id="uploadPicButton" value="图片上传" onclick="uploadPic()">
+        </form>
+        <form enctype="multipart/form-data" id="uploadVideo">
+            <input type="file" name="videoFile" id="upload_video" style="margin-bottom:10px;">
+            <input type="button" id="uploadVideoButton" value="视频上传" onclick="uploadVideo()">
         </form>
     </div>
 </body>
@@ -90,7 +94,7 @@
                 'account':$("input[name='loginAccount']").val(),
                 'pwd':$("input[name='loginPwd']").val(),
                 'token':'',
-                'ip':returnCitySN["cip"]
+                // 'ip':returnCitySN["cip"]
             },
             success:function (data) {
                 console.log(data);
@@ -217,6 +221,7 @@
         var pic = $('#upload_file')[0].files[0];
         var fd = new FormData();
         fd.append('uploadFile', pic);
+        fd.append('name', 'young');
         $.ajax({
             url:"http://localhost:8000/uploadImg",
             type:"POST",
@@ -226,10 +231,31 @@
             contentType: false,
             processData: false,
             success:function(data){
-                alert("更新成功");
+                alert("更新成功"+data);
             }
         });
 
+    }
+    function uploadVideo() {
+        var video = $('#upload_video')[0].files[0];
+        var fd = new FormData();
+        fd.append('headVideo', video);
+        fd.append('username', 'young');
+        $.ajax({
+            url:'http://localhost:8000/uploadVideo',
+            type:'POST',
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function (data) {
+                alert('success'+data)
+            },
+            error:function (err) {
+                alert('错误！'+err)
+            }
+
+        })
     }
 </script>
 </html>
