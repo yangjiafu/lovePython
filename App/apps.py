@@ -7,6 +7,7 @@ from App.models import TbMovies, TbUsers, TbVideo
 import json
 import random
 from django.core.mail import send_mail
+from django import forms
 
 import Love.settings
 import threading
@@ -15,6 +16,20 @@ import os
 
 class AppConfig(AppConfig):
     name = 'App'
+
+
+class MovieForm(forms.Form):
+    movieName = forms.CharField()
+    otherName = forms.CharField()
+    actors = forms.CharField()
+    director = forms.CharField()
+    classify = forms.CharField()
+    area = forms.CharField()
+    language = forms.CharField()
+    releasetime = forms.CharField()
+    score = forms.CharField()
+    m_poster = forms.FileField()
+    m_movie = forms.FileField()
 
 
 def send_email(mail):
@@ -135,3 +150,32 @@ class Search:
                 return 'too short'
         except TbMovies.DoesNotExist:
             return 'search err'
+
+
+class Movies:
+    def __init__(self, **kw):
+        for k, w in kw.iteritems():
+            setattr(self, k, w)
+
+    def upload_movie(self):
+        mf = MovieForm(self.post, self.files)
+        if mf.is_valid():
+            movieName = mf.cleaned_data['movieName']
+            otherName = mf.cleaned_data['otherName']
+            actors = mf.cleaned_data['actors']
+            director = mf.cleaned_data['director']
+            classify = mf.cleaned_data['classify']
+            area = mf.cleaned_data['area']
+            language = mf.cleaned_data['language']
+            releasetime = mf.cleaned_data['releasetime']
+            score = mf.cleaned_data['score']
+            m_poster = mf.cleaned_data['m_poster']
+            m_movie = mf.cleaned_data['m_movie']
+            print movieName
+            upData = TbMovies(m_name=movieName, m_othername=otherName, m_actor=actors, m_director=director,
+                              m_classify=classify, m_area=area, m_language=language, m_releasetime=releasetime,
+                              m_score=score, m_cover=m_poster, m_linkinfo=m_movie)
+            upData.save()
+            return 'upload success!!'
+        else:
+            return 'the data have wrong'

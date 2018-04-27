@@ -9,7 +9,7 @@ import random
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from App.models import TbMovies, TbUsers, TbVideo
-from App.apps import User, Search
+from App.apps import User, Search, Movies
 from django.conf import settings
 from django.core.mail import send_mail
 # 上传图片添加项
@@ -107,6 +107,46 @@ class UserForm(forms.Form):
     username = forms.CharField()
     headVideo = forms.FileField()
 
+# class MovieForm(forms.Form):
+#     movieName = forms.CharField()
+#     otherName = forms.CharField()
+#     actors = forms.CharField()
+#     director = forms.CharField()
+#     classify = forms.CharField()
+#     area = forms.CharField()
+#     language = forms.CharField()
+#     releasetime = forms.CharField()
+#     score = forms.CharField()
+#     m_poster = forms.FileField()
+#     m_movie = forms.FileField()
+#
+
+@csrf_exempt
+def upload_movie(request):
+    if request.method == 'POST':
+        m_upload_movie = Movies(post=request.POST, files=request.FILES)
+        return response_def(m_upload_movie.upload_movie())
+        # mf = MovieForm(request.POST, request.FILES)
+        # if mf.is_valid():
+        #     movieName = mf.cleaned_data['movieName']
+        #     otherName = mf.cleaned_data['otherName']
+        #     actors = mf.cleaned_data['actors']
+        #     director = mf.cleaned_data['director']
+        #     classify = mf.cleaned_data['classify']
+        #     area = mf.cleaned_data['area']
+        #     language = mf.cleaned_data['language']
+        #     releasetime = mf.cleaned_data['releasetime']
+        #     score = mf.cleaned_data['score']
+        #     m_poster = mf.cleaned_data['m_poster']
+        #     m_movie = mf.cleaned_data['m_movie']
+        #     print movieName
+        #     upData = TbMovies(m_name=movieName, m_othername=otherName, m_actor=actors, m_director=director,
+        #                       m_classify=classify, m_area=area, m_language=language, m_releasetime=releasetime,
+        #                       m_score=score, m_cover=m_poster, m_linkinfo=m_movie)
+        #     upData.save()
+        #     print u'上传成功'
+        #     return HttpResponse('upload success!!')
+
 
 @csrf_exempt
 def upload_video(request):
@@ -122,3 +162,4 @@ def upload_video(request):
             return HttpResponse('upload success!%s' % username)
         else:
             return HttpResponse('upload error')
+

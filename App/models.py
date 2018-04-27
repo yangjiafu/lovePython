@@ -24,7 +24,7 @@ class TbMovies(models.Model):
     m_id = models.AutoField(primary_key=True)
     m_name = models.CharField(max_length=50)
     m_othername = models.CharField(max_length=512, blank=True, null=True)
-    m_cover = models.CharField(max_length=100, blank=True, null=True)
+    m_cover = models.FileField(max_length=100, blank=True, null=True, upload_to='./uploadFile/covers')
     m_actor = models.CharField(max_length=1024, blank=True, null=True)
     m_director = models.CharField(max_length=200, blank=True, null=True)
     m_classify = models.CharField(max_length=40, blank=True, null=True)
@@ -35,7 +35,7 @@ class TbMovies(models.Model):
     m_score = models.CharField(max_length=10, blank=True, null=True)
     m_shortcomment = models.CharField(max_length=1024, blank=True, null=True)
     m_synopsis = models.CharField(max_length=2048, blank=True, null=True)
-    m_linkinfo = models.CharField(db_column='m_linkInfo', max_length=3072)  # Field name made lowercase.
+    m_linkinfo = models.FileField(db_column='m_linkInfo', max_length=3072, upload_to='./uploadFile/movies')  # Field name made lowercase.
     m_info = models.CharField(max_length=1024, blank=True, null=True)
     m_userid = models.CharField(max_length=10, blank=True, null=True)
     m_plays = models.IntegerField(blank=True, null=True)

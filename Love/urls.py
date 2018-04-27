@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^getEmailCode', views.get_email_code),
     url(r'^searchMovie', views.search_movie),
     url(r'^uploadImg', views.upload_img),
-    url(r'^uploadVideo', views.upload_video)
+    url(r'^uploadVideo', views.upload_video),
+    url(r'^uploadMovie', views.upload_movie)
 ]
