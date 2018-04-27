@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.apps import AppConfig
 from App.models import TbMovies, TbUsers, TbVideo
 import json
 import random
-
+from django.core.mail import send_mail
 
 import Love.settings
 import threading
@@ -14,6 +15,28 @@ import os
 
 class AppConfig(AppConfig):
     name = 'App'
+
+
+def send_email(mail):
+    rs = random.sample('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 4)
+    rs = ''.join(rs)
+    msg = u'你的随机验证码为：<a style="color:red">%s</a>' % rs
+    send_mail(u'验证码', 'actions', settings.EMAIL_HOST_USER,
+              [mail],
+              html_message=msg
+              )
+    return rs
+
+
+def detection(account):
+    try:
+        info = TbUsers.objects.get(u_account=account)
+        if info.is_active != '1':
+            TbUsers.objects.filter(u_account=account).delete()
+        else:
+            pass
+    except TbUsers.DoesNotExist:
+        pass
 
 
 class User:
@@ -48,3 +71,67 @@ class User:
                 return u'密码错误'
         except TbUsers.DoesNotExist:
             return u'未找到该用户'
+
+    def user_get_code(self):
+        try:
+            TbUsers.objects.get(u_account=self.account)
+            return u'账号已被注册'
+        except TbUsers.DoesNotExist:
+            try:
+                TbUsers.objects.get(u_email=self.email)
+                return u'邮箱已被注册'
+            except TbUsers.DoesNotExist:
+                code = send_email(self.email)
+                tbuser = TbUsers(u_account=self.account, u_name=self.name, u_pwd=self.pwd, u_age=self.age, u_email=self.email, u_gender=self.gender, u_code=code)
+                tbuser.save()
+                # 60s后检测是否注册成功，如果未注册则删除此条记录
+                change = threading.Timer(61.0, detection, (self.account,))
+                change.start()
+                return u'信息暂时存入数据库'
+
+    def user_register(self):
+        try:
+            info = TbUsers.objects.get(u_account=self.account)
+            u_code = info.u_code
+            is_active = info.is_active
+            if u_code == self.code and is_active != '1':
+                TbUsers.objects.filter(u_account=account).update(is_active='1')
+                return 'is success'
+            else:
+                return 'code is err'
+        except TbUsers.DoesNotExist:
+            return u'账号不存在'
+
+    def user_token_login(self):
+        try:
+            res = TbUsers.objects.get(token=self.token)
+            if res.u_ip == self.ip:
+                s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
+                     'token': res.token}
+                return json.dumps(s)
+            else:
+                return u'禁止异地token登录'
+        except TbUsers.DoesNotExist:
+            return 'login error'
+
+
+class Search:
+    def __init__(self, **kw):
+        for k, w in kw.iteritems():
+            setattr(self, k, w)
+
+    def search_movie(self):
+        try:
+            movie = self.movie
+            if len(movie) > 0:
+                movies = TbMovies.objects.filter(m_name__contains=movie)
+                info = []
+                for i in movies:
+                    ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': i.m_cover, 'actor': i.m_actor, 'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
+                           'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score, 'synopsis': i.m_synopsis, 'linkInfo': i.m_linkinfo}
+                    info.append(ins)
+                return json.dumps(info)
+            else:
+                return 'too short'
+        except TbMovies.DoesNotExist:
+            return 'search err'

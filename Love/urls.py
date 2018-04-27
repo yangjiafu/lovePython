@@ -22,12 +22,12 @@ urlpatterns = [
     # url(r'^hello$', views.hello),
     url(r'^$', views.usersdb),
     url(r'^admin/', admin.site.urls),
-    url(r'^login$', views.userlogin),
-    url(r'^tokenlogin', views.tokenLogin),
+    url(r'^login$', views.user_login),
+    url(r'^tokenlogin', views.token_login),
     # url(r'^goEmail', views.doemail),
     url(r'^registered', views.registered),
-    url(r'^getEmailCode', views.getEmailCode),
-    url(r'^search', views.search),
-    url(r'^uploadImg', views.uploadImg),
-    url(r'^uploadVideo', views.uploadVideo)
+    url(r'^getEmailCode', views.get_email_code),
+    url(r'^searchMovie', views.search_movie),
+    url(r'^uploadImg', views.upload_img),
+    url(r'^uploadVideo', views.upload_video)
 ]
