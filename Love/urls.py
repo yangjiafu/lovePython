@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^searchMovie', views.search_movie),
     url(r'^uploadImg', views.upload_img),
     url(r'^uploadVideo', views.upload_video),
-    url(r'^uploadMovie', views.upload_movie)
+    url(r'^uploadMovie', views.upload_movie),
+    url(r'^getComment', views.get_comment),
 ]

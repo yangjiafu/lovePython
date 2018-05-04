@@ -179,3 +179,13 @@ class Movies:
             return 'upload success!!'
         else:
             return 'the data have wrong'
+
+
+class GetInfo:
+    def __init__(self, **kw):
+        for k, w in kw.iteritems():
+            setattr(self, k, w)
+
+    def get_comment(self):
+        print self.id
+        return self.id

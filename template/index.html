@@ -73,6 +73,8 @@
             </form>
             <button onclick="uploadMovieFile()">上传</button>
         </div>
+        <input type="text" id="m_id" placeholder="输入电影id获取评论">
+        <button onclick="get_comment()">点击搜索评论</button>
     </div>
 </body>
 <script>
@@ -287,6 +289,22 @@
             data: fd,
             contentType: false,
             processData: false,
+            success:function (data) {
+                console.log(data)
+            },
+            error:function (err) {
+                console.log(err)
+            }
+        })
+    }
+    function get_comment() {
+        var m_id = $('#m_id').val();
+        $.ajax({
+            url:'http://localhost:8000/getComment',
+            type:'POST',
+            data:{
+                'm_id':m_id
+            },
             success:function (data) {
                 console.log(data)
             },
