@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^uploadVideo', views.upload_video),
     url(r'^uploadMovie', views.upload_movie),
     url(r'^getComment', views.get_comment),
+    url(r'^commitComment', views.commit_comment)
 ]

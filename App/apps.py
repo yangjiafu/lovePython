@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.apps import AppConfig
-from App.models import TbMovies, TbUsers, TbVideo
+from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment
 import json
 import random
 from django.core.mail import send_mail
@@ -181,11 +181,50 @@ class Movies:
             return 'the data have wrong'
 
 
-class GetInfo:
+class Comment:
     def __init__(self, **kw):
         for k, w in kw.iteritems():
             setattr(self, k, w)
 
     def get_comment(self):
-        print self.id
-        return self.id
+        id = self.id
+        if len(id) > 0:
+            comment = TbComment.objects.filter(topic_id=id)
+            contens = []
+            for c in comment:
+                user = TbUsers.objects.get(u_id=c.form_uid)
+                form_c_avatar = user.u_avatar if user.u_avatar else ''
+                reply = TbReply.objects.filter(reply_id=c.c_id)
+                replys = []
+                for r in reply:
+                    r_user = TbUsers.objects.get(u_id=r.form_uid)
+                    form_r_avatar = user.u_avatar if r_user.u_avatar else ''
+                    content = {'r_id': r.r_id, 'reply_id': r.reply_id, 'r_content': r.content, 'r_name': r_user.u_name,
+                               'r_avatar': form_r_avatar}
+                    replys.append(content)
+                cins = {'c_id': c.c_id, 'content': c.content, 'topic_id': c.topic_id, 'form_uid': c.form_uid,
+                        'form_name': user.u_name, 'form_avatar': form_c_avatar, 'reply': replys}
+                contens.append(cins)
+            return json.dumps(contens)
+            # comments = []
+            # replys = []
+            # for c in comment:
+            #     form_user = TbUsers.objects.get(u_id=c.form_uid)
+        else:
+            return 'id con\'t null'
+
+    def commit_comment(self):
+        try:
+            c_commentdb = TbComment(form_uid=self.form_id, topic_id=self.topic_id, content=self.content)
+            c_commentdb.save()
+            return 'success'
+        except:
+            return 'database error'
+
+    def commit_reply(self):
+        try:
+            c_replydb = TbReply(reply_id=self.reply_id, form_uid=self.form_uid, content=self.content)
+            c_replydb.save()
+            return 'success'
+        except:
+            return 'database error'

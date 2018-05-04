@@ -57,7 +57,7 @@
             <input type="button" id="uploadVideoButton" value="视频上传" onclick="uploadVideo()">
         </form>
 
-        <div style="background: aquamarine">
+        <div style="background: aquamarine;padding: 10px">
             <form name="movieFile" id="movieFile">
                 <input type="text" name="movieName" placeholder="电影名称">
                 <input type="text" name="otherName" placeholder="电影别名">
@@ -75,6 +75,18 @@
         </div>
         <input type="text" id="m_id" placeholder="输入电影id获取评论">
         <button onclick="get_comment()">点击搜索评论</button>
+        <div style="background: #ccc;padding: 10px">
+            <input type="text" id="mid" placeholder="评论的电影id">
+            <input type="text" id="u_id" placeholder="评论的用户id">
+            <input type="text" id="content" placeholder="评论内容">
+            <button onclick="commitComment()">提交电影评论</button>
+        </div>
+        <div style="background: cadetblue;padding: 10px">
+            <input type="text" id="replyId" placeholder="评论节点的id">
+            <input type="text" id="replyUserId" placeholder="回复者的id">
+            <input type="text" id="replyContent" placeholder="回复的内容">
+            <button onclick="commitReply()">点击回复</button>
+        </div>
     </div>
 </body>
 <script>
@@ -304,6 +316,48 @@
             type:'POST',
             data:{
                 'm_id':m_id
+            },
+            success:function (data) {
+                console.log(data)
+            },
+            error:function (err) {
+                console.log(err)
+            }
+        })
+    }
+    function commitComment() {
+        var m_id = $('#mid').val()
+        var m_content = $('#content').val()
+        var u_id = $('#u_id').val()
+        $.ajax({
+            url:'http://localhost:8000/commitComment',
+            type:'POST',
+            data:{
+                'type':'comment',
+                'form_id': u_id,
+                'topic_id': m_id,
+                'content': m_content
+            },
+            success:function (data) {
+                console.log(data)
+            },
+            error:function (err) {
+                console.log(err)
+            }
+        })
+    }
+    function commitReply() {
+        var replyId = $('#replyId').val()
+        var replyContent = $('#replyContent').val()
+        var replyUserId = $('#replyUserId').val()
+        $.ajax({
+            url:'http://localhost:8000/commitComment',
+            type:'POST',
+            data:{
+                'type':'reply',
+                'reply_id': replyId,
+                'content': replyContent,
+                'form_uid': replyUserId
             },
             success:function (data) {
                 console.log(data)

@@ -9,7 +9,7 @@ import random
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from App.models import TbMovies, TbUsers, TbVideo
-from App.apps import User, Search, Movies, GetInfo
+from App.apps import User, Search, Movies, Comment
 from django.conf import settings
 from django.core.mail import send_mail
 # 上传图片添加项
@@ -167,6 +167,18 @@ def upload_video(request):
 @csrf_exempt
 def get_comment(request):
     if request.method == 'POST':
-        id = request.POST['m_id']
-        comment = GetInfo(id=id)
-        return response_def(comment.get_comment())
+        g_comment = Comment(id=request.POST['m_id'])
+        return response_def(g_comment.get_comment())
+
+
+@csrf_exempt
+def commit_comment(request):
+    if request.method == 'POST':
+        if request.POST['type'] == 'comment':
+            c_comment = Comment(form_id=request.POST['form_id'], topic_id=request.POST['topic_id'],
+                                content=request.POST['content'])
+            return response_def(c_comment.commit_comment())
+        else:
+            c_reply = Comment(form_uid=request.POST['form_uid'], reply_id=request.POST['reply_id'],
+                              content=request.POST['content'])
+            return response_def(c_reply.commit_reply())

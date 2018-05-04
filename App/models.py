@@ -76,6 +76,7 @@ class TbComment(models.Model):
     topic_id = models.IntegerField(blank=True, null=True)
     content = models.CharField(max_length=150, blank=True, null=True)
     form_uid = models.IntegerField(blank=True, null=True)
+    form_time = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = False
@@ -112,7 +113,8 @@ class TbReply(models.Model):
     r_id = models.AutoField(primary_key=True)
     reply_id = models.IntegerField(blank=True, null=True)
     content = models.CharField(max_length=150, blank=True, null=True)
-    from_uid = models.IntegerField(blank=True, null=True)
+    form_uid = models.IntegerField(blank=True, null=True)
+    form_time = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = False
@@ -136,6 +138,7 @@ class TbUsers(models.Model):
     is_active = models.CharField(max_length=1, blank=True, null=True)
     u_code = models.CharField(max_length=4, blank=True, null=True)
     u_ip = models.CharField(max_length=15, blank=True, null=True)
+    u_avatar = models.FileField(max_length=50, blank=True, null=True, upload_to='./uploadFile/user_avatar')
 
     class Meta:
         managed = False
