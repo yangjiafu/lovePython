@@ -52,9 +52,12 @@ def usersdb(request):
 @csrf_exempt
 def get_email_code(request):
     if request.POST:
-        u_code = User(account=request.POST['account'], name=request.POST['name'], pwd=request.POST['pwd'],
-                      email=request.POST['email'], gender=request.POST['gender'], age=request.POST['age'])
+        print 'commit success'
+        u_code = User(post=request.POST, files=request.FILES)
         return response_def(u_code.user_get_code())
+        # u_code = User(account=request.POST['account'], name=request.POST['name'], pwd=request.POST['pwd'],
+        #               email=request.POST['email'], gender=request.POST['gender'], age=request.POST['age'])
+        # return response_def(u_code.user_get_code())
 
 
 @csrf_exempt

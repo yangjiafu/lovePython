@@ -19,24 +19,32 @@
         <!--</script>-->
         <h3>数据测试页</h3>
         <p id="wir"></p>
-        <input type="text" name="account" placeholder="账号">
-        <input type="text" name="username" placeholder="用户名">
-        <input type='password' name="pwd" placeholder="密码">
-        <input style="max-width: 150px" type="email" name="email" placeholder="邮箱">
-        <label><input type="radio" name="gender" value="1">男</label>
-        <label><input type="radio" name="gender" value="2">女</label>
-        <input type="number" name="age">年龄
-        <button onclick="getEmailCode()">获取验证码</button>
-        <input type="text" name="emailcode" placeholder="验证码">
-        <button onclick="registered()">注册</button>
+        <div style="background: cadetblue;padding: 10px;">
+            <form name="userInfo" id="userInfo">
+                <input type="text" name="account" placeholder="账号">
+                <input type="text" name="username" placeholder="用户名">
+                <input type='password' name="pwd" placeholder="密码">
+                <input style="max-width: 150px" type="email" name="email" placeholder="邮箱">
+                <label><input type="radio" name="gender" value="1">男</label>
+                <label><input type="radio" name="gender" value="2">女</label>
+
+                <input type="number" name="age">
+                <input type="file" accept="image/*" placeholder="用户头像" name="avatar">
+            </form>
+            <button onclick="getEmailCode()">获取验证码</button>
+            <input type="text" name="emailcode" placeholder="验证码">
+            <button onclick="registered()">注册</button>
+        </div>
         <br>
-        <input type="text" name="loginAccount" placeholder="用户账号">
-        <input type="password" name="loginPwd" placeholder="密码">
-        <button onclick="login()">login用户登录测试</button>
-        <br>
-        <input type="text" name="token" placeholder="粘贴token">
-        <button onclick="tokenLogin()">使用token令牌 && ip地址登陆</button>
-        <br>
+        <div style="padding: 10px;">
+            <input type="text" name="loginAccount" placeholder="用户账号">
+            <input type="password" name="loginPwd" placeholder="密码">
+            <button onclick="login()">login用户登录测试</button>
+            <br>
+            <input type="text" name="token" placeholder="粘贴token">
+            <button onclick="tokenLogin()">使用token令牌 && ip地址登陆</button>
+            <br>
+        </div>
         <!--<button onclick="getSubmit()">get提交测试</button>-->
         <!--<button onclick="postSubmit()">post提交测试</button>-->
         <!--<br>-->
@@ -57,7 +65,7 @@
             <input type="button" id="uploadVideoButton" value="视频上传" onclick="uploadVideo()">
         </form>
 
-        <div style="background: aquamarine;padding: 10px">
+        <div style="background: aquamarine;padding: 10px;">
             <form name="movieFile" id="movieFile">
                 <input type="text" name="movieName" placeholder="电影名称">
                 <input type="text" name="otherName" placeholder="电影别名">
@@ -158,31 +166,47 @@
         })
     }
     function getEmailCode() {
-        var account = $("input[name='account']").val()
-        var username = $("input[name='username']").val()
-        var pwd = $("input[name='pwd']").val()
-        var email = $("input[name='email']").val()
-        var gender = $("input[name='gender']:checked").val()
-        var age =$("input[name='age']").val()
+        // var account = $("input[name='account']").val()
+        // var username = $("input[name='username']").val()
+        // var pwd = $("input[name='pwd']").val()
+        // var email = $("input[name='email']").val()
+        // var gender = $("input[name='gender']:checked").val()
+        // var age =$("input[name='age']").val()
+        // $.ajax({
+        //     url:'http://localhost:8000/getEmailCode',
+        //     type:'POST',
+        //     // data:{'ecode':$("input[name='emailcode']").val()},
+        //     data:{
+        //         'account':account,
+        //         'name':username,
+        //         'pwd':pwd,
+        //         'email':email,
+        //         'gender':gender,
+        //         'age':age
+        //     },
+        //     success:function (data) {
+        //         console.log(data)
+        //         wir.html(data)
+        //     },
+        //     error:function (err) {
+        //         console.log(err)
+        //         wir.html('出错',err)
+        //     }
+        // })
+        var form = document.getElementById('userInfo')
+        var fd = new FormData(form)
+        console.log('发送请求');
         $.ajax({
             url:'http://localhost:8000/getEmailCode',
-            type:'POST',
-            // data:{'ecode':$("input[name='emailcode']").val()},
-            data:{
-                'account':account,
-                'name':username,
-                'pwd':pwd,
-                'email':email,
-                'gender':gender,
-                'age':age
-            },
+            type: 'POST',
+            data: fd,
+            contentType:false,
+            processData:false,
             success:function (data) {
                 console.log(data)
-                wir.html(data)
             },
             error:function (err) {
-                console.log(err)
-                wir.html('出错',err)
+                console.log(err);
             }
         })
     }

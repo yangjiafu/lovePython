@@ -14,6 +14,7 @@ import threading
 import hashlib
 import os
 
+
 class AppConfig(AppConfig):
     name = 'App'
 
@@ -32,11 +33,22 @@ class MovieForm(forms.Form):
     m_movie = forms.FileField()
 
 
-def send_email(mail):
+class UserForm(forms.Form):
+    account = forms.CharField()
+    username = forms.CharField()
+    pwd = forms.CharField()
+    email = forms.CharField()
+    gender = forms.CharField()
+    age = forms.CharField()
+    avatar = forms.FileField()
+
+
+def send_email(username, mail):
     rs = random.sample('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 4)
     rs = ''.join(rs)
-    msg = u'你的随机验证码为：<a style="color:red">%s</a>' % rs
-    send_mail(u'验证码', 'actions', settings.EMAIL_HOST_USER,
+    msg = u'%s你好：<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你的随机验证码为：' \
+          u'<a style="color:red">%s</a><span style="font-size:10px">（忽略大小写）</span>' % (username, rs)
+    send_mail(u'邮箱验证码', 'actions', settings.EMAIL_HOST_USER,
               [mail],
               html_message=msg
               )
@@ -88,29 +100,39 @@ class User:
             return u'未找到该用户'
 
     def user_get_code(self):
-        try:
-            TbUsers.objects.get(u_account=self.account)
-            return u'账号已被注册'
-        except TbUsers.DoesNotExist:
+        print '接受请求'
+        uf = UserForm(self.post, self.files)
+        if uf.is_valid():
+            account = uf.cleaned_data['account']
+            username = uf.cleaned_data['username']
+            pwd = uf.cleaned_data['pwd']
+            email = uf.cleaned_data['email']
+            gender = uf.cleaned_data['gender']
+            age = uf.cleaned_data['age']
+            avatar = uf.cleaned_data['avatar']
             try:
-                TbUsers.objects.get(u_email=self.email)
-                return u'邮箱已被注册'
+                TbUsers.objects.get(u_account=account)
+                return u'账号已被注册'
             except TbUsers.DoesNotExist:
-                code = send_email(self.email)
-                tbuser = TbUsers(u_account=self.account, u_name=self.name, u_pwd=self.pwd, u_age=self.age, u_email=self.email, u_gender=self.gender, u_code=code)
-                tbuser.save()
-                # 60s后检测是否注册成功，如果未注册则删除此条记录
-                change = threading.Timer(61.0, detection, (self.account,))
-                change.start()
-                return u'信息暂时存入数据库'
+                try:
+                    TbUsers.objects.get(u_email=email)
+                    return u'邮箱已被注册'
+                except TbUsers.DoesNotExist:
+                    code = send_email(username, email)
+                    tbuser = TbUsers(u_account=account, u_name=username, u_pwd=pwd, u_age=age, u_email=email, u_gender=gender, u_code=code, u_avatar=avatar)
+                    tbuser.save()
+                    # 60s后检测是否注册成功，如果未注册则删除此条记录
+                    change = threading.Timer(61.0, detection, (account,))
+                    change.start()
+                    return u'信息暂时存入数据库'
+        else:
+            print 'error'
 
     def user_register(self):
         try:
             info = TbUsers.objects.get(u_account=self.account)
-            u_code = info.u_code
-            is_active = info.is_active
-            if u_code == self.code and is_active != '1':
-                TbUsers.objects.filter(u_account=account).update(is_active='1')
+            if info.u_code.lower() == self.code.lower() and info.is_active != '1':
+                TbUsers.objects.filter(u_account=self.account).update(is_active='1')
                 return 'is success'
             else:
                 return 'code is err'
@@ -171,7 +193,6 @@ class Movies:
             score = mf.cleaned_data['score']
             m_poster = mf.cleaned_data['m_poster']
             m_movie = mf.cleaned_data['m_movie']
-            print movieName
             upData = TbMovies(m_name=movieName, m_othername=otherName, m_actor=actors, m_director=director,
                               m_classify=classify, m_area=area, m_language=language, m_releasetime=releasetime,
                               m_score=score, m_cover=m_poster, m_linkinfo=m_movie)

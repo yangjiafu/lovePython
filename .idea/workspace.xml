@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="864566d3-7800-4d1d-9da4-4ddd38a5ad0d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../loveData/models备份.txt" />
+    <list default="true" id="864566d3-7800-4d1d-9da4-4ddd38a5ad0d" name="Default" comment="完成用户头像上传，开始前端页面处理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/App/apps.py" afterPath="$PROJECT_DIR$/App/apps.py" />
-      <change beforePath="$PROJECT_DIR$/App/models.py" afterPath="$PROJECT_DIR$/App/models.py" />
       <change beforePath="$PROJECT_DIR$/App/views.py" afterPath="$PROJECT_DIR$/App/views.py" />
-      <change beforePath="$PROJECT_DIR$/Love/settings.py" afterPath="$PROJECT_DIR$/Love/settings.py" />
-      <change beforePath="$PROJECT_DIR$/Love/urls.py" afterPath="$PROJECT_DIR$/Love/urls.py" />
       <change beforePath="$PROJECT_DIR$/template/index.html" afterPath="$PROJECT_DIR$/template/index.html" />
-      <change beforePath="$PROJECT_DIR$/../loveData/数据库.txt" afterPath="$PROJECT_DIR$/../loveData/数据库.txt" />
-      <change beforePath="$PROJECT_DIR$/../loveData/相关文档.txt" afterPath="$PROJECT_DIR$/../loveData/相关文档.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,40 +33,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="294" column="31" lean-forward="true" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#4488#4788#0" expanded="false" />
-                <element signature="e#4815#5116#0" expanded="false" />
-                <element signature="e#5138#5707#0" expanded="false" />
-                <element signature="e#5734#6294#0" expanded="false" />
-                <element signature="e#6323#7274#0" expanded="false" />
-                <element signature="e#6657#7267#0" expanded="false" />
-                <element signature="e#7301#7849#0" expanded="false" />
-                <element signature="e#7878#8429#0" expanded="false" />
-                <element signature="e#8164#8244#0" expanded="false" />
-                <element signature="e#8279#8357#0" expanded="false" />
-                <element signature="e#8383#8422#0" expanded="false" />
-                <element signature="e#8434#8464#0" expanded="false" />
-                <element signature="e#9121#9610#0" expanded="false" />
-                <element signature="e#9638#10272#0" expanded="false" />
-                <element signature="e#10792#11172#0" expanded="false" />
-                <element signature="e#11202#11773#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="数据库.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../loveData/数据库.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="781">
+            <state relative-caret-position="748">
               <caret line="86" column="15" lean-forward="false" selection-start-line="86" selection-start-column="15" selection-end-line="86" selection-end-column="15" />
               <folding />
             </state>
@@ -82,32 +46,68 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="126" column="28" lean-forward="true" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
+            <state relative-caret-position="174">
+              <caret line="66" column="43" lean-forward="false" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
                 <element signature="e#703#1172#0" expanded="false" />
-                <element signature="e#2457#2872#0" expanded="false" />
-                <element signature="e#2971#3001#0" expanded="false" />
-                <element signature="e#3597#3642#0" expanded="false" />
-                <element signature="e#4776#5222#0" expanded="false" />
+                <element signature="e#1902#2113#0" expanded="false" />
+                <element signature="e#2159#2318#0" expanded="false" />
+                <element signature="e#2365#2563#0" expanded="false" />
+                <element signature="e#2608#3023#0" expanded="false" />
+                <element signature="e#3122#3152#0" expanded="false" />
+                <element signature="e#3748#3793#0" expanded="false" />
+                <element signature="e#4927#5373#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="67" column="57" lean-forward="false" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#form#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#4865#5165#0" expanded="false" />
+                <element signature="e#5192#5493#0" expanded="false" />
+                <element signature="e#5515#6084#0" expanded="false" />
+                <element signature="e#6710#6759#0" expanded="false" />
+                <element signature="e#8241#8789#0" expanded="false" />
+                <element signature="e#8818#9369#0" expanded="false" />
+                <element signature="e#9104#9184#0" expanded="false" />
+                <element signature="e#9219#9297#0" expanded="false" />
+                <element signature="e#9323#9362#0" expanded="false" />
+                <element signature="e#9374#9404#0" expanded="false" />
+                <element signature="e#10061#10550#0" expanded="false" />
+                <element signature="e#10578#11212#0" expanded="false" />
+                <element signature="e#11732#12112#0" expanded="false" />
+                <element signature="e#12142#12713#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/apps.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+            <state relative-caret-position="187">
+              <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
-                <element signature="e#819#1124#0" expanded="false" />
-                <element signature="e#1155#1387#0" expanded="false" />
-                <element signature="e#1518#1641#0" expanded="false" />
-                <element signature="e#2075#2631#0" expanded="false" />
-                <element signature="e#6642#7799#0" expanded="false" />
+                <element signature="e#1540#1772#0" expanded="false" />
+                <element signature="e#1903#2026#0" expanded="false" />
+                <element signature="e#2460#3016#0" expanded="false" />
+                <element signature="e#4718#5133#0" expanded="false" />
+                <element signature="e#5154#6063#0" expanded="false" />
+                <element signature="e#6118#6177#0" expanded="false" />
+                <element signature="e#7452#8609#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -116,8 +116,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1819">
-              <caret line="153" column="29" lean-forward="true" selection-start-line="153" selection-start-column="29" selection-end-line="153" selection-end-column="29" />
+            <state relative-caret-position="68">
+              <caret line="41" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
               <folding>
                 <element signature="e#468#507#0" expanded="true" />
                 <element signature="e#574#1110#0" expanded="false" />
@@ -133,7 +133,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Love/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
+            <state relative-caret-position="2091">
               <caret line="123" column="14" lean-forward="true" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
               <folding />
             </state>
@@ -143,8 +143,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Love/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+            <state relative-caret-position="153">
+              <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
               <folding>
                 <element signature="e#638#670#0" expanded="true" />
               </folding>
@@ -155,17 +155,17 @@
       <file leaf-file-name="相关文档.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../loveData/相关文档.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1839">
+            <state relative-caret-position="389">
               <caret line="213" column="29" lean-forward="true" selection-start-line="213" selection-start-column="29" selection-end-line="213" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models备份.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models备份.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../loveData/models备份.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
+            <state relative-caret-position="307">
               <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
               <folding />
             </state>
@@ -212,7 +212,7 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../loveData" />
     <option name="PUSH_TAGS">
       <GitPushTagMode />
     </option>
@@ -228,12 +228,12 @@
         <option value="$PROJECT_DIR$/Love/view.py" />
         <option value="$PROJECT_DIR$/../loveData/数据库.txt" />
         <option value="$PROJECT_DIR$/../loveData/相关文档.txt" />
-        <option value="$PROJECT_DIR$/Love/urls.py" />
         <option value="$PROJECT_DIR$/Love/settings.py" />
         <option value="$PROJECT_DIR$/App/models.py" />
-        <option value="$PROJECT_DIR$/App/apps.py" />
-        <option value="$PROJECT_DIR$/template/index.html" />
+        <option value="$PROJECT_DIR$/Love/urls.py" />
         <option value="$PROJECT_DIR$/App/views.py" />
+        <option value="$PROJECT_DIR$/template/index.html" />
+        <option value="$PROJECT_DIR$/App/apps.py" />
         <option value="$PROJECT_DIR$/../loveData/models备份.txt" />
       </list>
     </option>
@@ -244,9 +244,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="24" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-5" />
+    <option name="y" value="-12" />
     <option name="width" value="1382" />
     <option name="height" value="746" />
   </component>
@@ -484,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525404590417</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="新增用户评论和回复功能,下一步用户头像上传，前端页面处理">
+      <created>1525436482859</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1525436482859</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -497,16 +504,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="24" width="1382" height="746" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2948929" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.119868636" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16944024" sideWeight="0.4906542" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26029655" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17170954" sideWeight="0.4906542" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -557,7 +564,8 @@
     <MESSAGE value="修改了路由处理方式" />
     <MESSAGE value="新增图片视频上传并更新到数据库，" />
     <MESSAGE value="添加评论表和回复表数据库，下一步新增用户评论和回复功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加评论表和回复表数据库，下一步新增用户评论和回复功能" />
+    <MESSAGE value="新增用户评论和回复功能,下一步用户头像上传，前端页面处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增用户评论和回复功能,下一步用户头像上传，前端页面处理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -571,7 +579,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="50" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -763,9 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#221#230#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -814,52 +819,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Love/urls.py">
+    <entry file="file://$PROJECT_DIR$/App/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+        <state relative-caret-position="174">
+          <caret line="66" column="43" lean-forward="false" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
           <folding>
-            <element signature="e#638#670#0" expanded="true" />
+            <element signature="e#24#63#0" expanded="true" />
+            <element signature="e#703#1172#0" expanded="false" />
+            <element signature="e#1902#2113#0" expanded="false" />
+            <element signature="e#2159#2318#0" expanded="false" />
+            <element signature="e#2365#2563#0" expanded="false" />
+            <element signature="e#2608#3023#0" expanded="false" />
+            <element signature="e#3122#3152#0" expanded="false" />
+            <element signature="e#3748#3793#0" expanded="false" />
+            <element signature="e#4927#5373#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../loveData/数据库.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="86" column="15" lean-forward="false" selection-start-line="86" selection-start-column="15" selection-end-line="86" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="67" column="57" lean-forward="false" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#form#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#4865#5165#0" expanded="false" />
+            <element signature="e#5192#5493#0" expanded="false" />
+            <element signature="e#5515#6084#0" expanded="false" />
+            <element signature="e#6710#6759#0" expanded="false" />
+            <element signature="e#8241#8789#0" expanded="false" />
+            <element signature="e#8818#9369#0" expanded="false" />
+            <element signature="e#9104#9184#0" expanded="false" />
+            <element signature="e#9219#9297#0" expanded="false" />
+            <element signature="e#9323#9362#0" expanded="false" />
+            <element signature="e#9374#9404#0" expanded="false" />
+            <element signature="e#10061#10550#0" expanded="false" />
+            <element signature="e#10578#11212#0" expanded="false" />
+            <element signature="e#11732#12112#0" expanded="false" />
+            <element signature="e#12142#12713#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Love/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
+        <state relative-caret-position="2091">
           <caret line="123" column="14" lean-forward="true" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../loveData/数据库.txt">
+    <entry file="file://$PROJECT_DIR$/Love/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="86" column="15" lean-forward="false" selection-start-line="86" selection-start-column="15" selection-end-line="86" selection-end-column="15" />
-          <folding />
+        <state relative-caret-position="153">
+          <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../loveData/相关文档.txt">
+    <entry file="file://$PROJECT_DIR$/App/apps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1839">
-          <caret line="213" column="29" lean-forward="true" selection-start-line="213" selection-start-column="29" selection-end-line="213" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../loveData/models备份.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="187">
+          <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+            <element signature="e#1540#1772#0" expanded="false" />
+            <element signature="e#1903#2026#0" expanded="false" />
+            <element signature="e#2460#3016#0" expanded="false" />
+            <element signature="e#4718#5133#0" expanded="false" />
+            <element signature="e#5154#6063#0" expanded="false" />
+            <element signature="e#6118#6177#0" expanded="false" />
+            <element signature="e#7452#8609#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="153" column="29" lean-forward="true" selection-start-line="153" selection-start-column="29" selection-end-line="153" selection-end-column="29" />
+        <state relative-caret-position="68">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
           <folding>
             <element signature="e#468#507#0" expanded="true" />
             <element signature="e#574#1110#0" expanded="false" />
@@ -871,61 +924,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/index.html">
+    <entry file="file://$PROJECT_DIR$/../loveData/相关文档.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="294" column="31" lean-forward="true" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#4488#4788#0" expanded="false" />
-            <element signature="e#4815#5116#0" expanded="false" />
-            <element signature="e#5138#5707#0" expanded="false" />
-            <element signature="e#5734#6294#0" expanded="false" />
-            <element signature="e#6323#7274#0" expanded="false" />
-            <element signature="e#6657#7267#0" expanded="false" />
-            <element signature="e#7301#7849#0" expanded="false" />
-            <element signature="e#7878#8429#0" expanded="false" />
-            <element signature="e#8164#8244#0" expanded="false" />
-            <element signature="e#8279#8357#0" expanded="false" />
-            <element signature="e#8383#8422#0" expanded="false" />
-            <element signature="e#8434#8464#0" expanded="false" />
-            <element signature="e#9121#9610#0" expanded="false" />
-            <element signature="e#9638#10272#0" expanded="false" />
-            <element signature="e#10792#11172#0" expanded="false" />
-            <element signature="e#11202#11773#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="389">
+          <caret line="213" column="29" lean-forward="true" selection-start-line="213" selection-start-column="29" selection-end-line="213" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/views.py">
+    <entry file="file://$PROJECT_DIR$/../loveData/models备份.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="126" column="28" lean-forward="true" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-            <element signature="e#703#1172#0" expanded="false" />
-            <element signature="e#2457#2872#0" expanded="false" />
-            <element signature="e#2971#3001#0" expanded="false" />
-            <element signature="e#3597#3642#0" expanded="false" />
-            <element signature="e#4776#5222#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-            <element signature="e#819#1124#0" expanded="false" />
-            <element signature="e#1155#1387#0" expanded="false" />
-            <element signature="e#1518#1641#0" expanded="false" />
-            <element signature="e#2075#2631#0" expanded="false" />
-            <element signature="e#6642#7799#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="307">
+          <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
