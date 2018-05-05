@@ -95,9 +95,9 @@ class User:
                 s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip, 'token': tokens}
                 return json.dumps(s)
             else:
-                return u'密码错误'
+                return u'error'
         except TbUsers.DoesNotExist:
-            return u'未找到该用户'
+            return u'not'
 
     def user_get_code(self):
         print '接受请求'
