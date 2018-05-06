@@ -134,7 +134,7 @@ class TbUsers(models.Model):
     u_duration = models.CharField(max_length=4, blank=True, null=True)
     u_recording = models.CharField(max_length=30, blank=True, null=True)
     u_recommendmovie = models.CharField(db_column='u_recommendMovie', max_length=30, blank=True, null=True)  # Field name made lowercase.
-    u_account = models.CharField(unique=True, max_length=10)
+    u_account = models.CharField(unique=True, max_length=20)
     is_active = models.CharField(max_length=1, blank=True, null=True)
     u_code = models.CharField(max_length=4, blank=True, null=True)
     u_ip = models.CharField(max_length=15, blank=True, null=True)

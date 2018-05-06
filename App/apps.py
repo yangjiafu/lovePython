@@ -6,6 +6,7 @@ from django.apps import AppConfig
 from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment
 import json
 import random
+import re
 from django.core.mail import send_mail
 from django import forms
 
@@ -38,9 +39,9 @@ class UserForm(forms.Form):
     username = forms.CharField()
     pwd = forms.CharField()
     email = forms.CharField()
-    gender = forms.CharField()
-    age = forms.CharField()
-    avatar = forms.FileField()
+    # gender = forms.CharField()
+    # age = forms.CharField()
+    # avatar = forms.FileField()
 
 
 def send_email(username, mail):
@@ -87,29 +88,42 @@ class User:
     #     self.ip = ip
 
     def user_login(self):
-        try:
-            res = TbUsers.objects.get(u_account=self.account)
-            if self.pwd == res.u_pwd:
-                tokens = hashlib.sha1(os.urandom(24)).hexdigest()
-                # TbUsers.objects.filter(u_id=res.u_id).update(token=tokens, u_ip=request.POST['ip'])
-                s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip, 'token': tokens}
-                return json.dumps(s)
-            else:
-                return u'error'
-        except TbUsers.DoesNotExist:
-            return u'not'
+        str = r'^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
+        if re.match(str, self.account):
+            try:
+                res = TbUsers.objects.get(u_email=self.account)
+                if self.pwd == res.u_pwd:
+                    tokens = hashlib.sha1(os.urandom(24)).hexdigest()
+                    # TbUsers.objects.filter(u_id=res.u_id).update(token=tokens, u_ip=request.POST['ip'])
+                    s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip, 'token': tokens}
+                    return json.dumps(s)
+                else:
+                    return u'error'
+            except TbUsers.DoesNotExist:
+                return u'not'
+        else:
+            try:
+                res = TbUsers.objects.get(u_account=self.account)
+                if self.pwd == res.u_pwd:
+                    tokens = hashlib.sha1(os.urandom(24)).hexdigest()
+                    # TbUsers.objects.filter(u_id=res.u_id).update(token=tokens, u_ip=request.POST['ip'])
+                    s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip, 'token': tokens}
+                    return json.dumps(s)
+                else:
+                    return u'error'
+            except TbUsers.DoesNotExist:
+                return u'not'
 
     def user_get_code(self):
-        print '接受请求'
         uf = UserForm(self.post, self.files)
         if uf.is_valid():
             account = uf.cleaned_data['account']
             username = uf.cleaned_data['username']
             pwd = uf.cleaned_data['pwd']
             email = uf.cleaned_data['email']
-            gender = uf.cleaned_data['gender']
-            age = uf.cleaned_data['age']
-            avatar = uf.cleaned_data['avatar']
+            # gender = uf.cleaned_data['gender']
+            # age = uf.cleaned_data['age']
+            # avatar = uf.cleaned_data['avatar']
             try:
                 TbUsers.objects.get(u_account=account)
                 return u'账号已被注册'
@@ -119,7 +133,8 @@ class User:
                     return u'邮箱已被注册'
                 except TbUsers.DoesNotExist:
                     code = send_email(username, email)
-                    tbuser = TbUsers(u_account=account, u_name=username, u_pwd=pwd, u_age=age, u_email=email, u_gender=gender, u_code=code, u_avatar=avatar)
+                    # tbuser = TbUsers(u_account=account, u_name=username, u_pwd=pwd, u_email=email, u_code=code, u_avatar=avatar)
+                    tbuser = TbUsers(u_account=account, u_name=username, u_pwd=pwd, u_email=email, u_code=code)
                     tbuser.save()
                     # 60s后检测是否注册成功，如果未注册则删除此条记录
                     change = threading.Timer(61.0, detection, (account,))
@@ -150,6 +165,56 @@ class User:
                 return u'禁止异地token登录'
         except TbUsers.DoesNotExist:
             return 'login error'
+
+    def user_edit_getcode(self):
+        str = r'^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
+        dates = self.dates
+        if re.match(str, dates):
+            try:
+                TbUsers.objects.get(u_email=dates)
+                code = send_email('', dates)
+                TbUsers.objects.filter(u_email=dates).update(u_code=code)
+            except TbUsers.DoesNotExist:
+                return 'not'
+        else:
+            try:
+                res = TbUsers.objects.get(u_account=dates)
+                code = send_email(res.u_name, res.u_email)
+                TbUsers.objects.filter(u_account=dates).update(u_code=code)
+            except TbUsers.DoesNotExist:
+                return 'not'
+
+    def user_edit_pwd(self):
+        str = r'^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
+        dates = self.dates
+        pwd = self.pwd
+        code = self.code
+        if re.match(str, dates):
+            try:
+                res = TbUsers.objects.get(u_email=dates)
+                if res.u_code.lower() == code.lower():
+                    try:
+                        TbUsers.objects.filter(u_email=dates).update(u_pwd=pwd)
+                        return 'success'
+                    except:
+                        return 'pwd error'
+                else:
+                    return 'code error'
+            except TbUsers.DoesNotExist:
+                return 'not'
+        else:
+            try:
+                res = TbUsers.objects.get(u_account=dates)
+                if res.u_code.lower() == code.lower():
+                    try:
+                        TbUsers.objects.filter(u_account=dates).update(u_pwd=pwd)
+                        return 'success'
+                    except:
+                        return 'pwd error'
+                else:
+                    return 'code error'
+            except TbUsers.DoesNotExist:
+                return 'not'
 
 
 class Search:

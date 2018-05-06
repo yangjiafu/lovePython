@@ -25,11 +25,10 @@
                 <input type="text" name="username" placeholder="用户名">
                 <input type='password' name="pwd" placeholder="密码">
                 <input style="max-width: 150px" type="email" name="email" placeholder="邮箱">
-                <label><input type="radio" name="gender" value="1">男</label>
-                <label><input type="radio" name="gender" value="2">女</label>
-
-                <input type="number" name="age">
-                <input type="file" accept="image/*" placeholder="用户头像" name="avatar">
+                <!--<label><input type="radio" name="gender" value="1">男</label>-->
+                <!--<label><input type="radio" name="gender" value="2">女</label>-->
+                <!--<input type="number" name="age">-->
+                <!--<input type="file" accept="image/*" placeholder="用户头像" name="avatar">-->
             </form>
             <button onclick="getEmailCode()">获取验证码</button>
             <input type="text" name="emailcode" placeholder="验证码">
@@ -37,13 +36,20 @@
         </div>
         <br>
         <div style="padding: 10px;">
-            <input type="text" name="loginAccount" placeholder="用户账号">
+            <input type="text" name="loginAccount" placeholder="账号或邮箱">
             <input type="password" name="loginPwd" placeholder="密码">
             <button onclick="login()">login用户登录测试</button>
             <br>
             <input type="text" name="token" placeholder="粘贴token">
             <button onclick="tokenLogin()">使用token令牌 && ip地址登陆</button>
             <br>
+        </div>
+        <div style="padding: 10px;background: darkcyan">
+            <input type="text" id="editAccountEmail" placeholder="账号或邮箱">
+            <input type="text" id="editPwd" placeholder="新密码">
+            <input type="text" id="editCode" placeholder="验证码">
+            <button onclick="getEditCode()">验证码</button>
+            <button onclick="commitEditPwd()">提交修改</button>
         </div>
         <!--<button onclick="getSubmit()">get提交测试</button>-->
         <!--<button onclick="postSubmit()">post提交测试</button>-->
@@ -98,10 +104,11 @@
     </div>
 </body>
 <script>
+    var url = 'http://localhost:8000/'
     wir = $('#wir')
     function getSubmit() {
         $.ajax({
-            url:'http://localhost:8000/',
+            url:url+'',
             type:'GET',
             data:{'a':222,'b':333},
             success:function (data) {
@@ -114,7 +121,7 @@
     }
     function postSubmit() {
         $.ajax({
-            url:'http://localhost:8000/',
+            url:url+'',
             type:'POST',
             data:{'a':123,'b':232},
             success:function (data) {
@@ -127,7 +134,7 @@
     }
     function login() {
         $.ajax({
-            url:'http://localhost:8000/login',
+            url:url+'login',
             type:'POST',
             data:{
                 'account':$("input[name='loginAccount']").val(),
@@ -149,7 +156,7 @@
         var account = $("input[name='account']").val()
         var emailcode = $("input[name='emailcode']").val()
         $.ajax({
-            url:'http://localhost:8000/registered',
+            url:url+'registered',
             type:'POST',
             data:{
                 'account':account,
@@ -173,7 +180,7 @@
         // var gender = $("input[name='gender']:checked").val()
         // var age =$("input[name='age']").val()
         // $.ajax({
-        //     url:'http://localhost:8000/getEmailCode',
+        //     url:url+'getEmailCode',
         //     type:'POST',
         //     // data:{'ecode':$("input[name='emailcode']").val()},
         //     data:{
@@ -197,7 +204,7 @@
         var fd = new FormData(form)
         console.log('发送请求');
         $.ajax({
-            url:'http://localhost:8000/getEmailCode',
+            url:url+'getEmailCode',
             type: 'POST',
             data: fd,
             contentType:false,
@@ -210,10 +217,57 @@
             }
         })
     }
+    function getEditCode() {
+        var account = $('#editAccountEmail').val()
+        var reg=/[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
+        var type = ''
+        if(reg.test(account)){
+            type = 'email'
+            console.log('提交邮箱');
+        }else {
+            type = 'account'
+        }
+        console.log(account);
+        $.ajax({
+            url:url+'editPwd',
+            type:'POST',
+            data:{
+                'type':'getcode',
+                'date':account
+            },
+            success:function (res) {
+                console.log(res)
+            },
+            error:function (res) {
+                console.log(res);
+            }
+        })
+    }
+    function commitEditPwd() {
+        var account = $('#editAccountEmail').val();
+        var pwd = $('#editPwd').val();
+        var code = $('#editCode').val();
+        $.ajax({
+            url:url+'editPwd',
+            type:'POST',
+            data:{
+                'type':'editpwd',
+                'date':account,
+                'pwd':pwd,
+                'code':code
+            },
+            success:function (res) {
+                console.log(res)
+            },
+            error:function (res) {
+                console.log(res);
+            }
+        })
+    }
     function tokenLogin() {
         var token = $("input[name='token']").val()
         $.ajax({
-            url:'http://localhost:8000/tokenlogin',
+            url:url+'tokenlogin',
             type:'POST',
             data:{
                 'token':token,
@@ -234,7 +288,7 @@
         var info = $("input[name='searchMovie']").val()
         if (info.length > 0){
             $.ajax({
-            url:'http://localhost:8000/searchMovie',
+            url:url+'searchMovie',
             type:'POST',
             data:{
                 'movie':info
@@ -257,7 +311,7 @@
     //     var info = $("input[name='searchMovieId']").val()
     //     if(info.length>0){
     //         $.ajax({
-    //             url:'http://localhost:8000/search',
+    //             url:url+'search',
     //             type:'POST',
     //             data:{
     //                 'type':'id',
@@ -273,7 +327,7 @@
     //         )
     //     }
     // }
-    // url:'http://localhost:8000/uploadImg',
+    // url:url+'uploadImg',
     function uploadPic(){
         var pic = $('#upload_file')[0].files[0];
         var fd = new FormData();
@@ -299,7 +353,7 @@
         fd.append('headVideo', video);
         fd.append('username', 'young');
         $.ajax({
-            url:'http://localhost:8000/uploadVideo',
+            url:url+'uploadVideo',
             type:'POST',
             data: fd,
             cache: false,
@@ -320,7 +374,7 @@
         var form = document.getElementById('movieFile')
         var fd = new FormData(form)
         $.ajax({
-            url:'http://localhost:8000/uploadMovie',
+            url:url+'uploadMovie',
             type:'POST',
             data: fd,
             contentType: false,
@@ -336,7 +390,7 @@
     function get_comment() {
         var m_id = $('#m_id').val();
         $.ajax({
-            url:'http://localhost:8000/getComment',
+            url:url+'getComment',
             type:'POST',
             data:{
                 'm_id':m_id
@@ -354,7 +408,7 @@
         var m_content = $('#content').val()
         var u_id = $('#u_id').val()
         $.ajax({
-            url:'http://localhost:8000/commitComment',
+            url:url+'commitComment',
             type:'POST',
             data:{
                 'type':'comment',
@@ -375,7 +429,7 @@
         var replyContent = $('#replyContent').val()
         var replyUserId = $('#replyUserId').val()
         $.ajax({
-            url:'http://localhost:8000/commitComment',
+            url:url+'commitComment',
             type:'POST',
             data:{
                 'type':'reply',

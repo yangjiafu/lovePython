@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$', views.usersdb),
     url(r'^admin/', admin.site.urls),
     url(r'^login$', views.user_login),
+    url(r'^editPwd$', views.edit_pwd),
     url(r'^tokenlogin', views.token_login),
     # url(r'^goEmail', views.doemail),
     url(r'^registered', views.registered),
@@ -32,5 +33,6 @@ urlpatterns = [
     url(r'^uploadVideo', views.upload_video),
     url(r'^uploadMovie', views.upload_movie),
     url(r'^getComment', views.get_comment),
-    url(r'^commitComment', views.commit_comment)
+    url(r'^commitComment', views.commit_comment),
+
 ]
