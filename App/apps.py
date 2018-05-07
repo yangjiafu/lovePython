@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.apps import AppConfig
+from django.core.files import File
 from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment
 import json
 import random
@@ -205,8 +206,6 @@ class User:
     def user_token_login(self):
         try:
             res = TbUsers.objects.get(u_id=self.id)
-            print res.token
-            print self.token
             if res.token == self.token:
                 s = {'id': res.u_id, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
                      'token': res.token}
@@ -317,6 +316,17 @@ class Movies:
             return 'upload success!!'
         else:
             return 'the data have wrong'
+
+    def new_movies(self):
+        movies = TbMovies.objects.order_by('-m_id')[0:self.limit]
+        info = []
+        for i in movies:
+            ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor,
+                   'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
+                   'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score,
+                   'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name}
+            info.append(ins)
+        return json.dumps(info)
 
 
 class Comment:

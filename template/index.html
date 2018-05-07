@@ -101,6 +101,10 @@
             <input type="text" id="replyContent" placeholder="回复的内容">
             <button onclick="commitReply()">点击回复</button>
         </div>
+        <div style="background: deepskyblue;padding: 10px">
+            <input type="text" id="newmovies" placeholder="搜索最新电影的个数">
+            <button onclick="getNewMovie()">点击搜索</button>
+        </div>
     </div>
 </body>
 <script>
@@ -442,6 +446,22 @@
             },
             error:function (err) {
                 console.log(err)
+            }
+        })
+    }
+    function getNewMovie() {
+        var s = $('#newmovies').val()
+        $.ajax({
+            url:url+'getNewMovie',
+            type:'GET',
+            data:{
+                limit:parseInt(s)
+            },
+            success:function (data) {
+                console.log(data)
+            },
+            error:function (error) {
+                console.log(error)
             }
         })
     }

@@ -107,6 +107,14 @@ def search_movie(request):
 
 
 @csrf_exempt
+def get_newmovies(request):
+    if request.GET:
+        print request.GET['limit']
+        new_movie = Movies(limit=request.GET['limit'])
+        return response_def(new_movie.new_movies())
+
+
+@csrf_exempt
 def upload_img(request):
     if request.method == 'POST':
         # return HttpResponse('upload success %s' % request.POST['name'])
