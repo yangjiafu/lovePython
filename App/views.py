@@ -52,11 +52,15 @@ def usersdb(request):
 @csrf_exempt
 def get_email_code(request):
     if request.POST:
-        u_code = User(post=request.POST, files=request.FILES)
-        return response_def(u_code.user_get_code())
-        # u_code = User(account=request.POST['account'], name=request.POST['name'], pwd=request.POST['pwd'],
-        #               email=request.POST['email'], gender=request.POST['gender'], age=request.POST['age'])
-        # return response_def(u_code.user_get_code())
+        if request.content_type == 'multipart/form-data':
+            u_fcode = User(post=request.POST, files=request.FILES)
+            return response_def(u_fcode.user_get_code())
+            # u_code = User(account=request.POST['account'], name=request.POST['name'], pwd=request.POST['pwd'],
+            #               email=request.POST['email'], gender=request.POST['gender'], age=request.POST['age'])
+            # return response_def(u_code.user_get_code())
+        else:
+            u_pcode = User(name=request.POST['name'], email=request.POST['email'], pwd=request.POST['pwd'])
+            return response_def(u_pcode.user_get_pcode())
 
 
 @csrf_exempt

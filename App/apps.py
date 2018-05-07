@@ -56,15 +56,28 @@ def send_email(username, mail):
     return rs
 
 
-def detection(account):
-    try:
-        info = TbUsers.objects.get(u_account=account)
-        if info.is_active != '1':
-            TbUsers.objects.filter(u_account=account).delete()
-        else:
+def detection(account, type):
+    if type == 'email':
+        try:
+            info = TbUsers.objects.get(u_email=account)
+            if info.is_active != '1':
+                TbUsers.objects.filter(u_email=account).delete()
+            else:
+                pass
+        except TbUsers.DoesNotExist:
             pass
-    except TbUsers.DoesNotExist:
-        pass
+    else:
+        try:
+            info = TbUsers.objects.get(u_account=account)
+            if info.is_active != '1':
+                TbUsers.objects.filter(u_account=account).delete()
+            else:
+                pass
+        except TbUsers.DoesNotExist:
+            pass
+
+
+
 
 
 class User:
@@ -126,33 +139,66 @@ class User:
             # avatar = uf.cleaned_data['avatar']
             try:
                 TbUsers.objects.get(u_account=account)
-                return u'账号已被注册'
+                return u'have account'
             except TbUsers.DoesNotExist:
                 try:
                     TbUsers.objects.get(u_email=email)
-                    return u'邮箱已被注册'
+                    return u'have email'
                 except TbUsers.DoesNotExist:
                     code = send_email(username, email)
                     # tbuser = TbUsers(u_account=account, u_name=username, u_pwd=pwd, u_email=email, u_code=code, u_avatar=avatar)
                     tbuser = TbUsers(u_account=account, u_name=username, u_pwd=pwd, u_email=email, u_code=code)
                     tbuser.save()
                     # 60s后检测是否注册成功，如果未注册则删除此条记录
-                    change = threading.Timer(61.0, detection, (account,))
+                    change = threading.Timer(61.0, detection, (account, 'account'))
                     change.start()
-                    return u'信息暂时存入数据库'
+                    return 'buffer'
         else:
             print 'error'
 
-    def user_register(self):
+    def user_get_pcode(self):
+        name = self.name
+        email = self.email
+        pwd = self.pwd
         try:
-            info = TbUsers.objects.get(u_account=self.account)
-            if info.u_code.lower() == self.code.lower() and info.is_active != '1':
-                TbUsers.objects.filter(u_account=self.account).update(is_active='1')
-                return 'is success'
-            else:
-                return 'code is err'
+            TbUsers.objects.get(u_email=email)
+            return 'have email'
         except TbUsers.DoesNotExist:
-            return u'账号不存在'
+            code = send_email(name, email)
+            # tbuser = TbUsers(u_account=account, u_name=username, u_pwd=pwd, u_email=email, u_code=code, u_avatar=avatar)
+            tbuser = TbUsers(u_name=name, u_pwd=pwd, u_email=email, u_code=code, is_active=0)
+            tbuser.save()
+            # 60s后检测是否注册成功，如果未注册则删除此条记录
+            change = threading.Timer(61.0, detection, (email, 'email'))
+            change.start()
+            return 'buffer'
+
+    def user_register(self):
+        str = r'^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
+        dates = self.account
+        if re.match(str, dates):
+            try:
+                info = TbUsers.objects.get(u_email=dates)
+                print info.u_code.lower(), self.code.lower(), info.is_active
+                if info.u_code.lower() == self.code.lower() and info.is_active != '1':
+                    TbUsers.objects.filter(u_email=dates).update(is_active='1')
+                    print 'success'
+                    return 'is success'
+                else:
+                    print 'err'
+                    return 'code err'
+            except TbUsers.DoesNotExist:
+                return 'not email'
+        else:
+            try:
+                info = TbUsers.objects.get(u_account=dates)
+                if info.u_code.lower() == self.code.lower() and info.is_active != '1':
+                    TbUsers.objects.filter(u_account=dates).update(is_active='1')
+                    return 'is success'
+                else:
+                    return 'code err'
+            except TbUsers.DoesNotExist:
+                return u'not account'
 
     def user_token_login(self):
         try:
@@ -174,15 +220,17 @@ class User:
                 TbUsers.objects.get(u_email=dates)
                 code = send_email('', dates)
                 TbUsers.objects.filter(u_email=dates).update(u_code=code)
+                return 'success'
             except TbUsers.DoesNotExist:
-                return 'not'
+                return 'not email'
         else:
             try:
                 res = TbUsers.objects.get(u_account=dates)
                 code = send_email(res.u_name, res.u_email)
                 TbUsers.objects.filter(u_account=dates).update(u_code=code)
+                return 'success'
             except TbUsers.DoesNotExist:
-                return 'not'
+                return 'not account'
 
     def user_edit_pwd(self):
         str = r'^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
