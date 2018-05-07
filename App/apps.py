@@ -106,26 +106,28 @@ class User:
             try:
                 res = TbUsers.objects.get(u_email=self.account)
                 if self.pwd == res.u_pwd:
-                    tokens = hashlib.sha1(os.urandom(24)).hexdigest()
-                    # TbUsers.objects.filter(u_id=res.u_id).update(token=tokens, u_ip=request.POST['ip'])
-                    s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip, 'token': tokens}
+                    tokens = hashlib.sha1(os.urandom(10)).hexdigest()
+                    TbUsers.objects.filter(u_email=self.account).update(token=tokens)
+                    s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
+                         'token': tokens}
                     return json.dumps(s)
                 else:
-                    return u'error'
+                    return 'error'
             except TbUsers.DoesNotExist:
-                return u'not'
+                return 'not'
         else:
             try:
                 res = TbUsers.objects.get(u_account=self.account)
                 if self.pwd == res.u_pwd:
                     tokens = hashlib.sha1(os.urandom(24)).hexdigest()
-                    # TbUsers.objects.filter(u_id=res.u_id).update(token=tokens, u_ip=request.POST['ip'])
-                    s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip, 'token': tokens}
+                    TbUsers.objects.filter(u_account=self.account).update(token=tokens)
+                    s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
+                         'token': tokens}
                     return json.dumps(s)
                 else:
-                    return u'error'
+                    return 'error'
             except TbUsers.DoesNotExist:
-                return u'not'
+                return 'not'
 
     def user_get_code(self):
         uf = UserForm(self.post, self.files)
@@ -198,17 +200,19 @@ class User:
                 else:
                     return 'code err'
             except TbUsers.DoesNotExist:
-                return u'not account'
+                return 'not account'
 
     def user_token_login(self):
         try:
-            res = TbUsers.objects.get(token=self.token)
-            if res.u_ip == self.ip:
-                s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
+            res = TbUsers.objects.get(u_id=self.id)
+            print res.token
+            print self.token
+            if res.token == self.token:
+                s = {'id': res.u_id, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
                      'token': res.token}
                 return json.dumps(s)
             else:
-                return u'禁止异地token登录'
+                return 'token err'
         except TbUsers.DoesNotExist:
             return 'login error'
 

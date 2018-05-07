@@ -82,7 +82,7 @@ def user_login(request):
 @csrf_exempt
 def token_login(request):
     if request.POST:
-        u_token_login = User(token=request.POST['token'], ip=request.POST['ip'])
+        u_token_login = User(token=request.POST['token'], id=request.POST['id'])
         return response_def(u_token_login.user_token_login())
 
 

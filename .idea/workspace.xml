@@ -4,9 +4,8 @@
     <list default="true" id="864566d3-7800-4d1d-9da4-4ddd38a5ad0d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/App/apps.py" afterPath="$PROJECT_DIR$/App/apps.py" />
-      <change beforePath="$PROJECT_DIR$/App/models.py" afterPath="$PROJECT_DIR$/App/models.py" />
       <change beforePath="$PROJECT_DIR$/App/views.py" afterPath="$PROJECT_DIR$/App/views.py" />
-      <change beforePath="$PROJECT_DIR$/../loveData/数据库.txt" afterPath="$PROJECT_DIR$/../loveData/数据库.txt" />
+      <change beforePath="$PROJECT_DIR$/template/index.html" afterPath="$PROJECT_DIR$/template/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +17,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Love$love_debug.coverage" NAME="love debug Coverage Results" MODIFIED="1520399018241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Love$getImg.coverage" NAME="getImg Coverage Results" MODIFIED="1521179500398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../loveData" />
-    <SUITE FILE_PATH="coverage/Love$Love_debug.coverage" NAME="Love debug Coverage Results" MODIFIED="1525659138568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Love$Love_debug.coverage" NAME="Love debug Coverage Results" MODIFIED="1525692267416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -47,8 +46,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="161" column="29" lean-forward="false" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
+            <state relative-caret-position="250">
+              <caret line="271" column="18" lean-forward="true" selection-start-line="271" selection-start-column="18" selection-end-line="271" selection-end-column="18" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -62,7 +61,6 @@
                 <element signature="n#div#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="e#5322#5604#0" expanded="false" />
                 <element signature="e#5631#5914#0" expanded="false" />
-                <element signature="e#5936#6487#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -71,8 +69,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="69" column="43" lean-forward="false" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
+            <state relative-caret-position="136">
+              <caret line="84" column="60" lean-forward="true" selection-start-line="84" selection-start-column="60" selection-end-line="84" selection-end-column="60" />
               <folding>
                 <element signature="e#703#1172#0" expanded="false" />
                 <element signature="e#2131#2342#0" expanded="false" />
@@ -89,14 +87,16 @@
       <file leaf-file-name="apps.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/apps.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="163" column="3" lean-forward="true" selection-start-line="163" selection-start-column="3" selection-end-line="163" selection-end-column="3" />
+            <state relative-caret-position="220">
+              <caret line="207" column="27" lean-forward="true" selection-start-line="207" selection-start-column="27" selection-end-line="207" selection-end-column="27" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
                 <element signature="e#2259#2382#0" expanded="false" />
-                <element signature="e#9776#10685#0" expanded="false" />
-                <element signature="e#10740#10799#0" expanded="false" />
-                <element signature="e#12074#13231#0" expanded="false" />
+                <element signature="e#4192#5470#0" expanded="false" />
+                <element signature="e#5510#6158#0" expanded="false" />
+                <element signature="e#9819#10728#0" expanded="false" />
+                <element signature="e#10783#10842#0" expanded="false" />
+                <element signature="e#12117#13274#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -221,9 +221,9 @@
         <option value="$PROJECT_DIR$/Love/settings.py" />
         <option value="$PROJECT_DIR$/../loveData/models备份.txt" />
         <option value="$PROJECT_DIR$/Love/urls.py" />
-        <option value="$PROJECT_DIR$/template/index.html" />
         <option value="$PROJECT_DIR$/App/models.py" />
         <option value="$PROJECT_DIR$/../loveData/数据库.txt" />
+        <option value="$PROJECT_DIR$/template/index.html" />
         <option value="$PROJECT_DIR$/App/views.py" />
         <option value="$PROJECT_DIR$/App/apps.py" />
       </list>
@@ -501,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525614593691</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="注册前后台跑通">
+      <created>1525664881614</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1525664881614</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -522,14 +529,14 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35255355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1878089" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1785174" sideWeight="0.4906542" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2708018" sideWeight="0.50934577" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43163097" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3113674" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -578,15 +585,16 @@
     <MESSAGE value="完成用户头像上传，开始前端页面处理" />
     <MESSAGE value="修改了部分参数" />
     <MESSAGE value="添加忘记密码功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加忘记密码功能" />
+    <MESSAGE value="注册前后台跑通" />
+    <option name="LAST_COMMIT_MESSAGE" value="注册前后台跑通" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/App/apps.py</url>
-          <line>131</line>
-          <option name="timeStamp" value="53" />
+          <line>209</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -599,7 +607,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="54" />
+      <option name="time" value="57" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -867,21 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="137" column="33" lean-forward="false" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="33" />
-          <folding>
-            <element signature="e#468#507#0" expanded="true" />
-            <element signature="e#574#1110#0" expanded="false" />
-            <element signature="e#1153#1618#0" expanded="false" />
-            <element signature="e#1664#1887#0" expanded="false" />
-            <element signature="e#1932#2131#0" expanded="false" />
-            <element signature="e#2173#2392#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../loveData/models备份.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
@@ -898,10 +891,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/App/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="137" column="33" lean-forward="false" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="33" />
+          <folding>
+            <element signature="e#468#507#0" expanded="true" />
+            <element signature="e#574#1110#0" expanded="false" />
+            <element signature="e#1153#1618#0" expanded="false" />
+            <element signature="e#1664#1887#0" expanded="false" />
+            <element signature="e#1932#2131#0" expanded="false" />
+            <element signature="e#2173#2392#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="84" column="60" lean-forward="true" selection-start-line="84" selection-start-column="60" selection-end-line="84" selection-end-column="60" />
+          <folding>
+            <element signature="e#703#1172#0" expanded="false" />
+            <element signature="e#2131#2342#0" expanded="false" />
+            <element signature="e#3007#3205#0" expanded="false" />
+            <element signature="e#3250#3665#0" expanded="false" />
+            <element signature="e#3764#3794#0" expanded="false" />
+            <element signature="e#4390#4435#0" expanded="false" />
+            <element signature="e#5569#6015#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/template/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="161" column="29" lean-forward="false" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
+        <state relative-caret-position="250">
+          <caret line="271" column="18" lean-forward="true" selection-start-line="271" selection-start-column="18" selection-end-line="271" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -915,37 +939,22 @@
             <element signature="n#div#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="e#5322#5604#0" expanded="false" />
             <element signature="e#5631#5914#0" expanded="false" />
-            <element signature="e#5936#6487#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="69" column="43" lean-forward="false" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
-          <folding>
-            <element signature="e#703#1172#0" expanded="false" />
-            <element signature="e#2131#2342#0" expanded="false" />
-            <element signature="e#3007#3205#0" expanded="false" />
-            <element signature="e#3250#3665#0" expanded="false" />
-            <element signature="e#3764#3794#0" expanded="false" />
-            <element signature="e#4390#4435#0" expanded="false" />
-            <element signature="e#5569#6015#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/apps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="163" column="3" lean-forward="true" selection-start-line="163" selection-start-column="3" selection-end-line="163" selection-end-column="3" />
+        <state relative-caret-position="220">
+          <caret line="207" column="27" lean-forward="true" selection-start-line="207" selection-start-column="27" selection-end-line="207" selection-end-column="27" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
             <element signature="e#2259#2382#0" expanded="false" />
-            <element signature="e#9776#10685#0" expanded="false" />
-            <element signature="e#10740#10799#0" expanded="false" />
-            <element signature="e#12074#13231#0" expanded="false" />
+            <element signature="e#4192#5470#0" expanded="false" />
+            <element signature="e#5510#6158#0" expanded="false" />
+            <element signature="e#9819#10728#0" expanded="false" />
+            <element signature="e#10783#10842#0" expanded="false" />
+            <element signature="e#12117#13274#0" expanded="false" />
           </folding>
         </state>
       </provider>
