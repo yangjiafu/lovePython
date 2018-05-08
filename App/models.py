@@ -103,6 +103,7 @@ class TbMovies(models.Model):
     m_userid = models.CharField(max_length=10, blank=True, null=True)
     m_plays = models.IntegerField(blank=True, null=True)
     m_like = models.IntegerField(blank=True, null=True)
+    m_dislike = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

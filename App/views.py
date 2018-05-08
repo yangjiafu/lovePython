@@ -99,8 +99,8 @@ def edit_pwd(request):
 
 @csrf_exempt
 def search_movie(request):
-    if request.method == 'POST':
-        s_movie = Search(movie=request.POST['movie'])
+    if request.GET:
+        s_movie = Search(movie=request.GET['movie'], type=request.GET['type'])
         return response_def(s_movie.search_movie())
     else:
         return response_def('not support get submit')
@@ -109,8 +109,7 @@ def search_movie(request):
 @csrf_exempt
 def get_newmovies(request):
     if request.GET:
-        print request.GET['limit']
-        new_movie = Movies(limit=request.GET['limit'])
+        new_movie = Movies(limit=request.GET['limit'], place=request.GET['place'])
         return response_def(new_movie.new_movies())
 
 

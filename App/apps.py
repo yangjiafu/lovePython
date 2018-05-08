@@ -277,11 +277,14 @@ class Search:
         try:
             movie = self.movie
             if len(movie) > 0:
-                movies = TbMovies.objects.filter(m_name__contains=movie)
+                if self.type == 'name':
+                    movies = TbMovies.objects.filter(m_name__contains=movie)
+                else:
+                    movies = TbMovies.objects.filter(m_id=movie)
                 info = []
                 for i in movies:
-                    ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': i.m_cover, 'actor': i.m_actor, 'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
-                           'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score, 'synopsis': i.m_synopsis, 'linkInfo': i.m_linkinfo}
+                    ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor, 'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
+                           'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score, 'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name, 'like': i.m_like, 'dislike': i.m_dislike}
                     info.append(ins)
                 return json.dumps(info)
             else:
@@ -320,12 +323,17 @@ class Movies:
     def new_movies(self):
         movies = TbMovies.objects.order_by('-m_id')[0:self.limit]
         info = []
-        for i in movies:
-            ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor,
-                   'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
-                   'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score,
-                   'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name}
-            info.append(ins)
+        if self.place == 'home':
+            for i in movies:
+                ins = {'id': i.m_id, 'name': i.m_name, 'cover': File(i.m_cover).name, 'score': i.m_score}
+                info.append(ins)
+        else:
+            for i in movies:
+                ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor,
+                       'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
+                       'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score,
+                       'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name}
+                info.append(ins)
         return json.dumps(info)
 
 

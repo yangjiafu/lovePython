@@ -293,8 +293,9 @@
         if (info.length > 0){
             $.ajax({
             url:url+'searchMovie',
-            type:'POST',
+            type:'GET',
             data:{
+                'type':'name',
                 'movie':info
             },
             success:function (data) {
@@ -455,6 +456,7 @@
             url:url+'getNewMovie',
             type:'GET',
             data:{
+                place:'movies',
                 limit:parseInt(s)
             },
             success:function (data) {
