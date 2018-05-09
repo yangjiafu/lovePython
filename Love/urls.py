@@ -34,5 +34,6 @@ urlpatterns = [
     url(r'^uploadMovie', views.upload_movie),
     url(r'^getComment', views.get_comment),
     url(r'^commitComment', views.commit_comment),
-    url(r'^getNewMovie', views.get_newmovies)
+    url(r'^getNewMovie', views.get_newmovies),
+    url(r'^goMovieLike', views.go_movie_like)
 ]

@@ -267,6 +267,41 @@ class User:
             except TbUsers.DoesNotExist:
                 return 'not'
 
+    def user_like_movie(self):
+        # try:
+        # m_id = int(self.m_id)
+        # u_id = int(self.u_id)
+        user = TbUsers.objects.get(u_id=self.u_id)
+        u_like = user.u_likemovies if user.u_likemovies else ''
+        havaId = False
+        for u in u_like.split(','):
+            if u == self.m_id:
+                havaId=True
+                break
+        if havaId:
+            movie = TbMovies.objects.get(m_id=self.m_id)
+            TbMovies.objects.filter(m_id=self.m_id).update(m_like=movie.m_like-1)
+            print user.u_likemovies.replace(self.m_id+',', '')
+            u_likemovies = '%s' % (user.u_likemovies.replace(self.m_id, '').lstrip(',').rstrip(','))
+            TbUsers.objects.filter(u_id=self.u_id).update(u_likemovies=u_likemovies)
+            # user.u_likemovies('%s,' % (user.u_likemovies.replace(self.m_id+',', '')))
+            # user.save()
+            return 'sub'
+        else:
+            movie = TbMovies.objects.get(m_id=self.m_id)
+            TbMovies.objects.filter(m_id=self.m_id).update(m_like=movie.m_like+1)
+            print 'else: ', u_like, self.m_id
+            if len(u_like) < 1:
+                TbUsers.objects.filter(u_id=self.u_id).update(u_likemovies=self.m_id)
+                # user.u_likemovies('%s,' % self.m_id)
+            else:
+                u_likemovies = '%s,%s,' % (u_like, self.m_id)
+                TbUsers.objects.filter(u_id=self.u_id).update(u_likemovies=u_likemovies.lstrip(',').rstrip(','))
+                # user.u_likemovies('%s,%s,' % (u_like, self.m_id))
+            return 'add'
+        # except:
+        #     return 'error'
+
 
 class Search:
     def __init__(self, **kw):
@@ -277,14 +312,22 @@ class Search:
         try:
             movie = self.movie
             if len(movie) > 0:
+                userid = TbUsers.objects.get(u_id=self.u_id)
+                print userid.u_likemovies
                 if self.type == 'name':
                     movies = TbMovies.objects.filter(m_name__contains=movie)
                 else:
                     movies = TbMovies.objects.filter(m_id=movie)
                 info = []
                 for i in movies:
+                    islike = 0
+                    if len(userid.u_likemovies) > 0:
+                        for u in userid.u_likemovies.split(','):
+                            if u == self.movie:
+                                islike = 1
+                                break
                     ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor, 'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
-                           'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score, 'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name, 'like': i.m_like, 'dislike': i.m_dislike}
+                           'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score, 'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name, 'like': i.m_like, 'dislike': i.m_dislike, 'islike': islike}
                     info.append(ins)
                 return json.dumps(info)
             else:

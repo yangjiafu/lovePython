@@ -100,7 +100,7 @@ def edit_pwd(request):
 @csrf_exempt
 def search_movie(request):
     if request.GET:
-        s_movie = Search(movie=request.GET['movie'], type=request.GET['type'])
+        s_movie = Search(movie=request.GET['movie'], type=request.GET['type'], u_id=request.GET['u_id'])
         return response_def(s_movie.search_movie())
     else:
         return response_def('not support get submit')
@@ -190,8 +190,8 @@ def upload_video(request):
 
 @csrf_exempt
 def get_comment(request):
-    if request.method == 'POST':
-        g_comment = Comment(id=request.POST['m_id'])
+    if request.GET:
+        g_comment = Comment(id=request.GET['m_id'])
         return response_def(g_comment.get_comment())
 
 
@@ -206,3 +206,10 @@ def commit_comment(request):
             c_reply = Comment(form_uid=request.POST['form_uid'], reply_id=request.POST['reply_id'],
                               content=request.POST['content'])
             return response_def(c_reply.commit_reply())
+
+
+@csrf_exempt
+def go_movie_like(request):
+    if request.POST:
+        like_movie = User(u_id=request.POST['u_id'], m_id=request.POST['m_id'])
+        return response_def(like_movie.user_like_movie())
