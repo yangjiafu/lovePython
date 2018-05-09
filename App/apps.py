@@ -313,7 +313,8 @@ class Search:
             movie = self.movie
             if len(movie) > 0:
                 userid = TbUsers.objects.get(u_id=self.u_id)
-                print userid.u_likemovies
+                # print userid.u_likemovies
+                # userid.u_likemovies = userid.u_likemovies if userid.u_likemovies else ''
                 if self.type == 'name':
                     movies = TbMovies.objects.filter(m_name__contains=movie)
                 else:
@@ -321,7 +322,8 @@ class Search:
                 info = []
                 for i in movies:
                     islike = 0
-                    if len(userid.u_likemovies) > 0:
+                    # if len(userid.u_likemovies) > 0:
+                    if userid.u_likemovies == 'None':
                         for u in userid.u_likemovies.split(','):
                             if u == self.movie:
                                 islike = 1
@@ -401,8 +403,9 @@ class Comment:
                     content = {'r_id': r.r_id, 'reply_id': r.reply_id, 'r_content': r.content, 'r_name': r_user.u_name,
                                'r_avatar': form_r_avatar}
                     replys.append(content)
+                show_reply = True if len(replys) > 0 else False
                 cins = {'c_id': c.c_id, 'content': c.content, 'topic_id': c.topic_id, 'form_uid': c.form_uid,
-                        'form_name': user.u_name, 'form_avatar': form_c_avatar, 'reply': replys}
+                        'form_name': user.u_name, 'form_avatar': form_c_avatar, 'reply': replys, 'show_reply':show_reply}
                 contens.append(cins)
             return json.dumps(contens)
             # comments = []
