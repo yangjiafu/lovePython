@@ -107,10 +107,10 @@ def search_movie(request):
 
 
 @csrf_exempt
-def get_newmovies(request):
+def get_movies(request):
     if request.GET:
-        new_movie = Movies(limit=request.GET['limit'], place=request.GET['place'])
-        return response_def(new_movie.new_movies())
+        movie = Movies(start=request.GET['start'], limit=request.GET['limit'], place=request.GET['place'])
+        return response_def(movie.movies())
 
 
 @csrf_exempt

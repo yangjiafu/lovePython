@@ -78,7 +78,12 @@ def detection(account, type):
             pass
 
 
-
+def push_movie(m):
+    arr = []
+    for i in m:
+        ins = {'id': i.m_id, 'name': i.m_name, 'cover': File(i.m_cover).name, 'score': i.m_score}
+        arr.append(ins)
+    return arr
 
 
 class User:
@@ -365,21 +370,28 @@ class Movies:
         else:
             return 'the data have wrong'
 
-    def new_movies(self):
-        movies = TbMovies.objects.order_by('-m_id')[0:self.limit]
-        info = []
+    def movies(self):
         if self.place == 'home':
-            for i in movies:
-                ins = {'id': i.m_id, 'name': i.m_name, 'cover': File(i.m_cover).name, 'score': i.m_score}
-                info.append(ins)
+            movies = {'new': [], 'comedy': [], 'action': [],  'fantasy': [], 'war': []}
+            newmovie = TbMovies.objects.order_by('-m_id')[0:4]
+            movies['new'] = push_movie(newmovie)
+            comedymovie = TbMovies.objects.filter(m_classify__contains=u'喜剧')[0:5]
+            movies['comedy'] = push_movie(comedymovie)
+            actionmovie = TbMovies.objects.filter(m_classify__contains=u'动作')[0:5]
+            movies['action'] = push_movie(actionmovie)
+            fantasymovie = TbMovies.objects.filter(m_classify__contains=u'奇幻')[0:5]
+            movies['fantasy'] = push_movie(fantasymovie)
+            warmovie = TbMovies.objects.filter(m_classify__contains=u'战争')[0:5]
+            movies['war'] = push_movie(warmovie)
+            return json.dumps(movies)
         else:
-            for i in movies:
-                ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor,
-                       'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
-                       'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score,
-                       'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name}
-                info.append(ins)
-        return json.dumps(info)
+            pass
+            # for i in movies:
+            #     ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor,
+            #            'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
+            #            'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score,
+            #            'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name}
+            #     info.append(ins)
 
 
 class Comment:
