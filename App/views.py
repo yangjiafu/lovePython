@@ -213,3 +213,25 @@ def go_movie_like(request):
     if request.POST:
         like_movie = User(u_id=request.POST['u_id'], m_id=request.POST['m_id'])
         return response_def(like_movie.user_like_movie())
+
+
+@csrf_exempt
+def commit_hot_comment(request):
+    if request.POST:
+        if request.POST['type'] == 'comment':
+            hot_comment = Comment(h_uid=request.POST['h_uid'], h_comment=request.POST['h_comment'])
+            return response_def(hot_comment.commit_hot_comment())
+
+
+@csrf_exempt
+def commit_hot_reply(request):
+    if request.POST:
+        hot_reply = Comment(hr_uid=request.POST['hr_uid'], hr_content=request.POST['hr_content'],hr_fromid=request.POST['hr_fromid'])
+        return response_def(hot_reply.commit_hot_reply())
+
+
+@csrf_exempt
+def get_hot_comment(request):
+    if request.GET:
+        hot_comments = Comment(hr_uid=request.GET['hr_uid'], limit=request.GET['limit'], start=request.GET['start'])
+        return response_def(hot_comments.get_hot_comment())

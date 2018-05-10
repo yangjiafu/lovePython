@@ -105,6 +105,22 @@
             <input type="text" id="newmovies" placeholder="搜索最新电影的个数">
             <button onclick="getNewMovie()">点击搜索</button>
         </div>
+
+        <div style="background: darkcyan;padding: 10px">
+            用户到热门页的内容仅文字
+            <div>
+                <input type="text" id="hotComment" placeholder="请输入你要发表的内容">
+                <button onclick="commitHotComment()">发表</button>
+            </div>
+            <div>
+                <input type="text" id="hotReply" placeholder="输入评论上一条内容的内容">
+                <input type="text" id="hotCommentId" placeholder="上一条评论的id">
+                <button onclick="commitHotReply()">提交评论内容</button>
+            </div>
+            <div>
+                <button onclick="getHotComment()">获取热门评论及内容</button>
+            </div>
+        </div>
     </div>
 </body>
 <script>
@@ -464,6 +480,59 @@
             },
             error:function (error) {
                 console.log(error)
+            }
+        })
+    }
+    function commitHotComment() {
+        var comment = $('#hotComment').val()
+        $.ajax({
+            url:url+'commitHotComment',
+            type:'POST',
+            data:{
+                type:'comment',
+                h_uid:1,
+                h_comment: comment,
+            },
+            success:function (res) {
+                console.log(res);
+            },
+            error:function (res) {
+                console.log(res);
+            }
+        })
+    }
+    function commitHotReply() {
+        var rcomment = $('#hotReply').val()
+        var rid = $('#hotCommentId').val()
+        $.ajax({
+            url:url+'commitHotReply',
+            type:'POST',
+            data:{
+                hr_uid: rid,
+                hr_content:rcomment,
+                hr_fromid: 1
+            },
+            success:function (res) {
+                console.log(res);
+            },error:function (error) {
+                console.log(error);
+            }
+        })
+    }
+    function getHotComment(){
+        $.ajax({
+            url:url+'getHomeComment',
+            type:'GET',
+            data:{
+                hr_uid:1,
+                limit:10,
+                start:0
+            },
+            success:function (res) {
+                console.log(res);
+            },
+            error:function (error) {
+                console.log(error);
             }
         })
     }

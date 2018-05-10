@@ -35,5 +35,8 @@ urlpatterns = [
     url(r'^getComment', views.get_comment),
     url(r'^commitComment', views.commit_comment),
     url(r'^getNewMovie', views.get_movies),
-    url(r'^goMovieLike', views.go_movie_like)
+    url(r'^goMovieLike', views.go_movie_like),
+    url(r'^commitHotComment', views.commit_hot_comment),
+    url(r'^commitHotReply', views.commit_hot_reply),
+    url(r'^getHomeComment', views.get_hot_comment)
 ]

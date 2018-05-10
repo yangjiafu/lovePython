@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.apps import AppConfig
 from django.core.files import File
-from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment
+from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment, TbHotcomment, TbHotreply
 import json
 import random
 import re
@@ -417,7 +417,7 @@ class Comment:
                     replys.append(content)
                 show_reply = True if len(replys) > 0 else False
                 cins = {'c_id': c.c_id, 'content': c.content, 'topic_id': c.topic_id, 'form_uid': c.form_uid,
-                        'form_name': user.u_name, 'form_avatar': form_c_avatar, 'reply': replys, 'show_reply':show_reply}
+                        'form_name': user.u_name, 'form_avatar': form_c_avatar, 'reply': replys, 'show_reply': show_reply}
                 contens.append(cins)
             return json.dumps(contens)
             # comments = []
@@ -442,3 +442,56 @@ class Comment:
             return 'success'
         except:
             return 'database error'
+
+    def commit_hot_comment(self):
+        try:
+            c_h_c = TbHotcomment(h_uid=self.h_uid, h_comment=self.h_comment, h_like=0, h_likes='')
+            c_h_c.save()
+            return 'success'
+        except:
+            return 'error'
+
+    def commit_hot_reply(self):
+        try:
+            c_h_r = TbHotreply(hr_uid=self.hr_uid, hr_content=self.hr_content, hr_fromid=self.hr_fromid, hr_like=0, hr_likes='')
+            c_h_r.save()
+            return 'success'
+        except:
+            return 'error'
+
+    def get_hot_comment(self):
+        # try:
+        hotcomment = TbHotcomment.objects.order_by('-h_id')[self.start:self.limit]
+        comments = []
+        if len(hotcomment) > 0:
+            for c in hotcomment:
+                reply = TbHotreply.objects.filter(hr_fromid=c.h_id)
+                cuser = TbUsers.objects.get(u_id=c.h_uid)
+                imgpath = File(c.h_img).name if c.h_img else ''
+                videopath = File(c.h_video).name if c.h_video else ''
+                avatarPath = File(cuser.u_avatar).name if cuser.u_avatar else ''
+                isLike = False
+                if c.h_likes:
+                    for uid in c.h_likes.split(','):
+                        if uid == self.hr_uid:
+                            isLike = True
+                            break
+                ccomment = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': avatarPath, 'isLike': isLike,
+                            'comment': c.h_comment, 'img': imgpath, 'video': videopath, 'like': c.h_like,
+                            'replay': []}
+                for r in reply:
+                    ureply = TbUsers.objects.get(u_id=r.hr_uid)
+                    rimgPath = File(ureply.u_avatar).name if ureply.u_avatar else ''
+                    isRlike = False
+                    if r.hr_likes:
+                        for urId in r.hr_likes.split(','):
+                            if urId == self.hr_uid:
+                                isRlike = True
+                                break
+                    repcontent = {'name': ureply.u_name, 'id': ureply.u_id, 'avatar': rimgPath, 'isLike': isRlike,
+                                  'comment': r.hr_content}
+                    ccomment['replay'].append(repcontent)
+                comments.append(ccomment)
+            return json.dumps(comments)
+        # except:
+        #     return 'error'
