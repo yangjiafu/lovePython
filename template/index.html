@@ -118,7 +118,8 @@
                 <button onclick="commitHotReply()">提交评论内容</button>
             </div>
             <div>
-                <button onclick="getHotComment()">获取热门评论及内容</button>
+                <button onclick="getHotComment()">获取热门评论</button>
+                <button onclick="getHotReply()">获取Reply的内容</button>
             </div>
         </div>
     </div>
@@ -521,10 +522,30 @@
     }
     function getHotComment(){
         $.ajax({
-            url:url+'getHomeComment',
+            url:url+'getHotComment',
             type:'GET',
             data:{
-                hr_uid:1,
+                type:'comment',
+                u_id:1,
+                limit:10,
+                start:0
+            },
+            success:function (res) {
+                console.log(res);
+            },
+            error:function (error) {
+                console.log(error);
+            }
+        })
+    }
+    function getHotReply() {
+           $.ajax({
+            url:url+'getHotComment',
+            type:'GET',
+            data:{
+                type:'reply',
+                hr_formId:1,
+                u_id:1,
                 limit:10,
                 start:0
             },

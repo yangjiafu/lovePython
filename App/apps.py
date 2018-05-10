@@ -86,6 +86,15 @@ def push_movie(m):
     return arr
 
 
+def judge_like(pid, likes):
+    isLike = False
+    for uid in likes.split(','):
+        if len(uid) > 0 and uid == pid:
+            isLike = True
+            break
+    return isLike
+
+
 class User:
     # 所有用户的基类
     def __init__(self, **kw):
@@ -278,15 +287,16 @@ class User:
         # u_id = int(self.u_id)
         user = TbUsers.objects.get(u_id=self.u_id)
         u_like = user.u_likemovies if user.u_likemovies else ''
-        havaId = False
-        for u in u_like.split(','):
-            if u == self.m_id:
-                havaId=True
-                break
+        # havaId = False
+        havaId = judge_like(self.m_id, u_like)
+        # for u in u_like.split(','):
+        #     if u == self.m_id:
+        #         havaId=True
+        #         break
         if havaId:
             movie = TbMovies.objects.get(m_id=self.m_id)
             TbMovies.objects.filter(m_id=self.m_id).update(m_like=movie.m_like-1)
-            print user.u_likemovies.replace(self.m_id+',', '')
+            # print user.u_likemovies.replace(self.m_id+',', '')
             u_likemovies = '%s' % (user.u_likemovies.replace(self.m_id, '').lstrip(',').rstrip(','))
             TbUsers.objects.filter(u_id=self.u_id).update(u_likemovies=u_likemovies)
             # user.u_likemovies('%s,' % (user.u_likemovies.replace(self.m_id+',', '')))
@@ -460,38 +470,71 @@ class Comment:
             return 'error'
 
     def get_hot_comment(self):
-        # try:
-        hotcomment = TbHotcomment.objects.order_by('-h_id')[self.start:self.limit]
-        comments = []
-        if len(hotcomment) > 0:
-            for c in hotcomment:
-                reply = TbHotreply.objects.filter(hr_fromid=c.h_id)
-                cuser = TbUsers.objects.get(u_id=c.h_uid)
-                imgpath = File(c.h_img).name if c.h_img else ''
-                videopath = File(c.h_video).name if c.h_video else ''
-                avatarPath = File(cuser.u_avatar).name if cuser.u_avatar else ''
-                isLike = False
-                if c.h_likes:
-                    for uid in c.h_likes.split(','):
-                        if uid == self.hr_uid:
-                            isLike = True
-                            break
-                ccomment = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': avatarPath, 'isLike': isLike,
-                            'comment': c.h_comment, 'img': imgpath, 'video': videopath, 'like': c.h_like,
-                            'replay': []}
-                for r in reply:
-                    ureply = TbUsers.objects.get(u_id=r.hr_uid)
-                    rimgPath = File(ureply.u_avatar).name if ureply.u_avatar else ''
-                    isRlike = False
-                    if r.hr_likes:
-                        for urId in r.hr_likes.split(','):
-                            if urId == self.hr_uid:
-                                isRlike = True
-                                break
-                    repcontent = {'name': ureply.u_name, 'id': ureply.u_id, 'avatar': rimgPath, 'isLike': isRlike,
-                                  'comment': r.hr_content}
-                    ccomment['replay'].append(repcontent)
-                comments.append(ccomment)
-            return json.dumps(comments)
-        # except:
-        #     return 'error'
+        try:
+            hotcomment = TbHotcomment.objects.order_by('-h_id')[self.start:self.limit]
+            comments = []
+            if len(hotcomment) > 0:
+                for c in hotcomment:
+                    reply = TbHotreply.objects.filter(hr_fromid=c.h_id).count()
+                    cuser = TbUsers.objects.get(u_id=c.h_uid)
+                    imgpath = File(c.h_img).name if c.h_img else ''
+                    videopath = File(c.h_video).name if c.h_video else ''
+                    avatarPath = File(cuser.u_avatar).name if cuser.u_avatar else ''
+                    isLike = False
+                    if c.h_likes:
+                        isLike = judge_like(self.u_id, c.h_likes)
+                        # for uid in c.h_likes.split(','):
+                        #     if len(uid) > 0 and uid == self.u_id:
+                        #         isLike = True
+                        #         break
+                    ccomment = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': avatarPath, 'isLike': isLike,
+                                'comment': c.h_comment, 'img': imgpath, 'video': videopath, 'like': c.h_like,
+                                'commentId':c.h_id,'time':  str(c.h_time), 'replays': reply}
+                    comments.append(ccomment)
+                return json.dumps(comments)
+        except:
+            return 'error'
+
+    def get_hot_replys(self):
+        comment = TbHotcomment.objects.get(h_id=self.hr_formId)
+        cuser = TbUsers.objects.get(u_id=comment.h_uid)
+        cavatar = File(cuser.u_avatar).name if cuser.u_avatar else ''
+        cisLike = False
+        if comment.h_likes:
+            cisLike = judge_like(self.u_id,comment.h_likes)
+            # for lk in comment.h_likes.split(','):
+            #     if len(lk) > 0 and lk == self.u_id:
+            #         cisLike = True
+            #         break
+        replyInfo = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': cavatar, 'isLike': cisLike,
+                     'time': str(comment.h_time), 'reply': []}
+        replys = TbHotreply.objects.filter(hr_fromid=self.hr_formId)[self.start:self.limit]
+        for r in replys:
+            user = TbUsers.objects.get(u_id=r.hr_uid)
+            isLike = False
+            if r.hr_likes:
+                isLike = judge_like(self.u_id,r.hr_likes)
+            avatar = File(user.u_avatar).name if user.u_avatar else ''
+            content = {'name': user.u_name, 'id': user.u_id, 'avatar': avatar, 'isLike': isLike,
+                       'reply': r.hr_content, 'time': str(r.hr_time), 'replyId': r.hr_id}
+            replyInfo['reply'].append(content)
+        return json.dumps(replyInfo)
+
+    def do_comment_like(self):
+        comment = TbHotcomment.objects.get(h_id=self.comment_id)
+        if judge_like(self.u_id, comment.h_likes):
+            islikeid = []
+            for cuid in comment.h_likes.split(','):
+                if self.u_id != cuid:
+                    islikeid.append(cuid)
+            TbHotcomment.objects.filter(h_id=self.comment_id).update(h_likes=','.join(islikeid), h_like=comment.h_like-1)
+            return 'sub'
+        else:
+            h_like = comment.h_like if comment.h_like else 0
+            islikeid = []
+            for cuid in comment.h_likes.split(','):
+                if len(cuid) > 0:
+                    islikeid.append(cuid)
+            islikeid.append(self.u_id)
+            TbHotcomment.objects.filter(h_id=self.comment_id).update(h_likes=','.join(islikeid), h_like=h_like+1)
+            return 'add'

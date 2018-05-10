@@ -209,7 +209,7 @@ def commit_comment(request):
 
 
 @csrf_exempt
-def go_movie_like(request):
+def do_movie_like(request):
     if request.POST:
         like_movie = User(u_id=request.POST['u_id'], m_id=request.POST['m_id'])
         return response_def(like_movie.user_like_movie())
@@ -233,5 +233,17 @@ def commit_hot_reply(request):
 @csrf_exempt
 def get_hot_comment(request):
     if request.GET:
-        hot_comments = Comment(hr_uid=request.GET['hr_uid'], limit=request.GET['limit'], start=request.GET['start'])
-        return response_def(hot_comments.get_hot_comment())
+        if request.GET['type'] == 'comment':
+            hot_comments = Comment(u_id=request.GET['u_id'], limit=request.GET['limit'], start=request.GET['start'])
+            return response_def(hot_comments.get_hot_comment())
+        else:
+            hot_replys = Comment(u_id=request.GET['u_id'], limit=request.GET['limit'], start=request.GET['start'],
+                                 hr_formId=request.GET['hr_formId'])
+            return response_def(hot_replys.get_hot_replys())
+
+@csrf_exempt
+def do_comment_like(request):
+    if request.POST:
+        if request.POST['type'] == 'comment':
+            comment_like = Comment(u_id=request.POST['u_id'], comment_id=request.POST['comment_id'])
+            return response_def(comment_like.do_comment_like())
