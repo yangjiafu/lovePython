@@ -226,7 +226,7 @@ def commit_hot_comment(request):
 @csrf_exempt
 def commit_hot_reply(request):
     if request.POST:
-        hot_reply = Comment(hr_uid=request.POST['hr_uid'], hr_content=request.POST['hr_content'],hr_fromid=request.POST['hr_fromid'])
+        hot_reply = Comment(hr_uid=request.POST['hr_uid'], hr_content=request.POST['hr_content'], hr_fromid=request.POST['hr_fromid'])
         return response_def(hot_reply.commit_hot_reply())
 
 

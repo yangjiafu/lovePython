@@ -106,6 +106,7 @@ class TbHotreply(models.Model):
     hr_likes = models.CharField(max_length=1000, blank=True, null=True)
     hr_like = models.IntegerField(blank=True, null=True)
     hr_fromid = models.IntegerField(blank=True, null=True)
+    hr_token = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         managed = False

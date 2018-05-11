@@ -463,9 +463,12 @@ class Comment:
 
     def commit_hot_reply(self):
         try:
-            c_h_r = TbHotreply(hr_uid=self.hr_uid, hr_content=self.hr_content, hr_fromid=self.hr_fromid, hr_like=0, hr_likes='')
+            token = hashlib.sha1(os.urandom(5)).hexdigest()
+            c_h_r = TbHotreply(hr_uid=self.hr_uid, hr_content=self.hr_content, hr_fromid=self.hr_fromid, hr_like=0,
+                               hr_likes='', hr_token=token[:20])
             c_h_r.save()
-            return 'success'
+            reply = TbHotreply.objects.get(hr_token=token[:20])
+            return json.dumps({'hr_id': reply.hr_id})
         except:
             return 'error'
 
@@ -539,6 +542,7 @@ class Comment:
             return 'add'
 
     def do_reply_like(self):
+        print self.reply_id
         reply = TbHotreply.objects.get(hr_id=self.reply_id)
         if judge_like(self.u_id, reply.hr_likes):
             islikeid = []
