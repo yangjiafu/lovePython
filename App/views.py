@@ -241,9 +241,13 @@ def get_hot_comment(request):
                                  hr_formId=request.GET['hr_formId'])
             return response_def(hot_replys.get_hot_replys())
 
+
 @csrf_exempt
 def do_comment_like(request):
     if request.POST:
         if request.POST['type'] == 'comment':
             comment_like = Comment(u_id=request.POST['u_id'], comment_id=request.POST['comment_id'])
             return response_def(comment_like.do_comment_like())
+        elif request.POST['type'] == 'reply':
+            reply_like = Comment(u_id=request.POST['u_id'], reply_id=request.POST['reply_id'])
+            return response_def(reply_like.do_reply_like())

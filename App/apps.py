@@ -496,29 +496,28 @@ class Comment:
             return 'error'
 
     def get_hot_replys(self):
-        comment = TbHotcomment.objects.get(h_id=self.hr_formId)
-        cuser = TbUsers.objects.get(u_id=comment.h_uid)
-        cavatar = File(cuser.u_avatar).name if cuser.u_avatar else ''
-        cisLike = False
-        if comment.h_likes:
-            cisLike = judge_like(self.u_id,comment.h_likes)
-            # for lk in comment.h_likes.split(','):
-            #     if len(lk) > 0 and lk == self.u_id:
-            #         cisLike = True
-            #         break
-        replyInfo = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': cavatar, 'isLike': cisLike,
-                     'time': str(comment.h_time), 'reply': []}
-        replys = TbHotreply.objects.filter(hr_fromid=self.hr_formId)[self.start:self.limit]
-        for r in replys:
-            user = TbUsers.objects.get(u_id=r.hr_uid)
-            isLike = False
-            if r.hr_likes:
-                isLike = judge_like(self.u_id,r.hr_likes)
-            avatar = File(user.u_avatar).name if user.u_avatar else ''
-            content = {'name': user.u_name, 'id': user.u_id, 'avatar': avatar, 'isLike': isLike,
-                       'reply': r.hr_content, 'time': str(r.hr_time), 'replyId': r.hr_id}
-            replyInfo['reply'].append(content)
-        return json.dumps(replyInfo)
+        try:
+            comment = TbHotcomment.objects.get(h_id=self.hr_formId)
+            cuser = TbUsers.objects.get(u_id=comment.h_uid)
+            cavatar = File(cuser.u_avatar).name if cuser.u_avatar else ''
+            cisLike = False
+            if comment.h_likes:
+                cisLike = judge_like(self.u_id, comment.h_likes)
+            replyInfo = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': cavatar, 'isLike': cisLike, 'like': comment.h_like,
+                         'comment': comment.h_comment, 'commentId': comment.h_id, 'time': str(comment.h_time), 'reply': []}
+            replys = TbHotreply.objects.filter(hr_fromid=self.hr_formId)[self.start:self.limit]
+            for r in replys:
+                user = TbUsers.objects.get(u_id=r.hr_uid)
+                isLike = False
+                if r.hr_likes:
+                    isLike = judge_like(self.u_id, r.hr_likes)
+                avatar = File(user.u_avatar).name if user.u_avatar else ''
+                content = {'name': user.u_name, 'id': user.u_id, 'avatar': avatar, 'isLike': isLike, 'like': r.hr_like,
+                           'reply': r.hr_content, 'time': str(r.hr_time), 'replyId': r.hr_id}
+                replyInfo['reply'].append(content)
+            return json.dumps(replyInfo)
+        except:
+            return 'error'
 
     def do_comment_like(self):
         comment = TbHotcomment.objects.get(h_id=self.comment_id)
@@ -537,4 +536,23 @@ class Comment:
                     islikeid.append(cuid)
             islikeid.append(self.u_id)
             TbHotcomment.objects.filter(h_id=self.comment_id).update(h_likes=','.join(islikeid), h_like=h_like+1)
+            return 'add'
+
+    def do_reply_like(self):
+        reply = TbHotreply.objects.get(hr_id=self.reply_id)
+        if judge_like(self.u_id, reply.hr_likes):
+            islikeid = []
+            for cuid in reply.hr_likes.split(','):
+                if self.u_id != cuid:
+                    islikeid.append(cuid)
+            TbHotreply.objects.filter(hr_id=self.reply_id).update(hr_likes=','.join(islikeid), hr_like=reply.hr_like-1)
+            return 'sub'
+        else:
+            hr_like = reply.hr_like if reply.hr_like else 0
+            islikeid = []
+            for cuid in reply.hr_likes.split(','):
+                if len(cuid) > 0:
+                    islikeid.append(cuid)
+            islikeid.append(self.u_id)
+            TbHotreply.objects.filter(hr_id=self.reply_id).update(hr_likes=','.join(islikeid), hr_like=hr_like + 1)
             return 'add'
