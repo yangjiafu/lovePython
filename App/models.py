@@ -76,7 +76,7 @@ class TbComment(models.Model):
     topic_id = models.IntegerField(blank=True, null=True)
     content = models.CharField(max_length=150, blank=True, null=True)
     form_uid = models.IntegerField(blank=True, null=True)
-    form_time = models.DateTimeField(auto_now=True)
+    form_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         managed = False
@@ -87,7 +87,7 @@ class TbHotcomment(models.Model):
     h_id = models.AutoField(primary_key=True)
     h_uid = models.IntegerField(blank=True, null=True)
     h_comment = models.CharField(max_length=200, blank=True, null=True)
-    h_time = models.DateTimeField()
+    h_time = models.DateTimeField(auto_now_add=True, auto_now=False)
     h_img = models.FileField(max_length=50, blank=True, null=True, upload_to='./uploadFile/hotComment/img')
     h_video = models.FileField(max_length=50, blank=True, null=True, upload_to='./uploadFile/hotComment/video')
     h_likes = models.CharField(max_length=1000, blank=True, null=True)
@@ -102,7 +102,7 @@ class TbHotreply(models.Model):
     hr_id = models.AutoField(primary_key=True)
     hr_uid = models.IntegerField(blank=True, null=True)
     hr_content = models.CharField(max_length=150, blank=True, null=True)
-    hr_time = models.DateTimeField()
+    hr_time = models.DateTimeField(auto_now_add=True)
     hr_likes = models.CharField(max_length=1000, blank=True, null=True)
     hr_like = models.IntegerField(blank=True, null=True)
     hr_fromid = models.IntegerField(blank=True, null=True)
@@ -143,7 +143,7 @@ class TbReply(models.Model):
     reply_id = models.IntegerField(blank=True, null=True)
     content = models.CharField(max_length=150, blank=True, null=True)
     form_uid = models.IntegerField(blank=True, null=True)
-    form_time = models.DateTimeField(auto_now=True)
+    form_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         managed = False

@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="864566d3-7800-4d1d-9da4-4ddd38a5ad0d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/App/apps.py" afterPath="$PROJECT_DIR$/App/apps.py" />
-      <change beforePath="$PROJECT_DIR$/App/views.py" afterPath="$PROJECT_DIR$/App/views.py" />
-      <change beforePath="$PROJECT_DIR$/Love/urls.py" afterPath="$PROJECT_DIR$/Love/urls.py" />
-      <change beforePath="$PROJECT_DIR$/template/index.html" afterPath="$PROJECT_DIR$/template/index.html" />
+      <change beforePath="$PROJECT_DIR$/App/models.py" afterPath="$PROJECT_DIR$/App/models.py" />
+      <change beforePath="$PROJECT_DIR$/../loveData/数据库.txt" afterPath="$PROJECT_DIR$/../loveData/数据库.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +35,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="547" column="23" lean-forward="true" selection-start-line="547" selection-start-column="23" selection-end-line="547" selection-end-column="23" />
+            <state relative-caret-position="137">
+              <caret line="493" column="24" lean-forward="true" selection-start-line="493" selection-start-column="24" selection-end-line="493" selection-end-column="24" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -77,8 +75,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Love/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+            <state relative-caret-position="629">
+              <caret line="40" column="23" lean-forward="false" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -87,7 +85,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
+            <state relative-caret-position="2822">
               <caret line="247" column="72" lean-forward="false" selection-start-line="247" selection-start-column="62" selection-end-line="247" selection-end-column="72" />
               <folding>
                 <element signature="e#2131#2342#0" expanded="false" />
@@ -101,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/apps.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="536" column="41" lean-forward="true" selection-start-line="536" selection-start-column="41" selection-end-line="536" selection-end-column="41" />
+            <state relative-caret-position="187">
+              <caret line="529" column="121" lean-forward="true" selection-start-line="529" selection-start-column="121" selection-end-line="529" selection-end-column="121" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
                 <element signature="e#2688#2811#0" expanded="false" />
@@ -116,14 +114,12 @@
                 <element signature="e#7794#8188#0" expanded="false" />
                 <element signature="e#8231#8986#0" expanded="false" />
                 <element signature="e#9025#10170#0" expanded="false" />
-                <element signature="e#11867#13519#0" expanded="false" />
                 <element signature="e#13540#16092#0" expanded="false" />
                 <element signature="e#13671#14707#0" expanded="false" />
                 <element signature="e#13747#14652#0" expanded="false" />
                 <element signature="e#16244#17590#0" expanded="false" />
                 <element signature="e#17630#17851#0" expanded="false" />
                 <element signature="e#17889#18105#0" expanded="false" />
-                <element signature="e#18149#18349#0" expanded="false" />
                 <element signature="e#18391#18621#0" expanded="false" />
                 <element signature="e#20059#21310#0" expanded="false" />
               </folding>
@@ -134,8 +130,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="103" column="14" lean-forward="false" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="14" />
+            <state relative-caret-position="208">
+              <caret line="89" column="54" lean-forward="false" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
               <folding>
                 <element signature="e#574#1110#0" expanded="false" />
                 <element signature="e#1153#1618#0" expanded="false" />
@@ -150,18 +146,18 @@
       <file leaf-file-name="models备份.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../loveData/models备份.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="187">
               <caret line="107" column="14" lean-forward="false" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="数据库.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="数据库.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../loveData/数据库.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="114" column="17" lean-forward="true" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
+            <state relative-caret-position="27">
+              <caret line="78" column="34" lean-forward="false" selection-start-line="78" selection-start-column="34" selection-end-line="78" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -196,6 +192,7 @@
       <find>get</find>
       <find>getComment</find>
       <find>getNewMovie</find>
+      <find>time</find>
     </findStrings>
     <replaceStrings>
       <replace>view</replace>
@@ -204,7 +201,7 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../loveData" />
     <option name="PUSH_TAGS">
       <GitPushTagMode />
     </option>
@@ -221,13 +218,13 @@
         <option value="$PROJECT_DIR$/../loveData/相关文档.txt" />
         <option value="$PROJECT_DIR$/Love/settings.py" />
         <option value="$PROJECT_DIR$/../loveData/testFile.py" />
-        <option value="$PROJECT_DIR$/../loveData/数据库.txt" />
         <option value="$PROJECT_DIR$/../loveData/models备份.txt" />
-        <option value="$PROJECT_DIR$/App/models.py" />
         <option value="$PROJECT_DIR$/template/index.html" />
         <option value="$PROJECT_DIR$/App/views.py" />
         <option value="$PROJECT_DIR$/Love/urls.py" />
         <option value="$PROJECT_DIR$/App/apps.py" />
+        <option value="$PROJECT_DIR$/App/models.py" />
+        <option value="$PROJECT_DIR$/../loveData/数据库.txt" />
       </list>
     </option>
   </component>
@@ -238,8 +235,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="91" />
-    <option name="y" value="2" />
+    <option name="x" value="33" />
+    <option name="y" value="123" />
     <option name="width" value="1382" />
     <option name="height" value="729" />
   </component>
@@ -259,8 +256,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -292,6 +287,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -591,7 +588,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525939274683</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="热门点赞完成，前端在需处理">
+      <created>1525960930013</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1525960930013</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -604,7 +608,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="91" y="2" width="1382" height="729" extended-state="0" />
+    <frame x="33" y="123" width="1382" height="729" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -613,7 +617,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10892587" sideWeight="0.4906542" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11043873" sideWeight="0.4906542" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -676,7 +680,8 @@
     <MESSAGE value="先上传一下，改了点小功能，忘记了" />
     <MESSAGE value="首页对应电影的加载" />
     <MESSAGE value="添加了热门页的讨论数据库和回复数据库，配置好后台接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了热门页的讨论数据库和回复数据库，配置好后台接口" />
+    <MESSAGE value="热门点赞完成，前端在需处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="热门点赞完成，前端在需处理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -684,7 +689,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/template/index.html</url>
           <line>448</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="90" />
         </line-breakpoint>
       </breakpoints>
@@ -954,48 +958,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../loveData/models备份.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="107" column="14" lean-forward="false" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../loveData/数据库.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="114" column="17" lean-forward="true" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="103" column="14" lean-forward="false" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="14" />
-          <folding>
-            <element signature="e#574#1110#0" expanded="false" />
-            <element signature="e#1153#1618#0" expanded="false" />
-            <element signature="e#1664#1887#0" expanded="false" />
-            <element signature="e#1932#2131#0" expanded="false" />
-            <element signature="e#2173#2392#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/sre_compile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2822">
+          <caret line="247" column="72" lean-forward="false" selection-start-line="247" selection-start-column="62" selection-end-line="247" selection-end-column="72" />
+          <folding>
+            <element signature="e#2131#2342#0" expanded="false" />
+            <element signature="e#3499#3914#0" expanded="false" />
+            <element signature="e#4013#4043#0" expanded="false" />
+            <element signature="e#4508#5734#0" expanded="false" />
+            <element signature="e#4639#4684#0" expanded="false" />
+            <element signature="e#5818#6264#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Love/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="40" column="23" lean-forward="false" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="547" column="23" lean-forward="true" selection-start-line="547" selection-start-column="23" selection-end-line="547" selection-end-column="23" />
+        <state relative-caret-position="137">
+          <caret line="493" column="24" lean-forward="true" selection-start-line="493" selection-start-column="24" selection-end-line="493" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#3;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1030,33 +1026,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="247" column="72" lean-forward="false" selection-start-line="247" selection-start-column="62" selection-end-line="247" selection-end-column="72" />
-          <folding>
-            <element signature="e#2131#2342#0" expanded="false" />
-            <element signature="e#3499#3914#0" expanded="false" />
-            <element signature="e#4013#4043#0" expanded="false" />
-            <element signature="e#4508#5734#0" expanded="false" />
-            <element signature="e#4639#4684#0" expanded="false" />
-            <element signature="e#5818#6264#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Love/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/apps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="536" column="41" lean-forward="true" selection-start-line="536" selection-start-column="41" selection-end-line="536" selection-end-column="41" />
+        <state relative-caret-position="187">
+          <caret line="529" column="121" lean-forward="true" selection-start-line="529" selection-start-column="121" selection-end-line="529" selection-end-column="121" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
             <element signature="e#2688#2811#0" expanded="false" />
@@ -1067,17 +1040,45 @@
             <element signature="e#7794#8188#0" expanded="false" />
             <element signature="e#8231#8986#0" expanded="false" />
             <element signature="e#9025#10170#0" expanded="false" />
-            <element signature="e#11867#13519#0" expanded="false" />
             <element signature="e#13540#16092#0" expanded="false" />
             <element signature="e#13671#14707#0" expanded="false" />
             <element signature="e#13747#14652#0" expanded="false" />
             <element signature="e#16244#17590#0" expanded="false" />
             <element signature="e#17630#17851#0" expanded="false" />
             <element signature="e#17889#18105#0" expanded="false" />
-            <element signature="e#18149#18349#0" expanded="false" />
             <element signature="e#18391#18621#0" expanded="false" />
             <element signature="e#20059#21310#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="89" column="54" lean-forward="false" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
+          <folding>
+            <element signature="e#574#1110#0" expanded="false" />
+            <element signature="e#1153#1618#0" expanded="false" />
+            <element signature="e#1664#1887#0" expanded="false" />
+            <element signature="e#1932#2131#0" expanded="false" />
+            <element signature="e#2173#2392#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../loveData/models备份.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="107" column="14" lean-forward="false" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../loveData/数据库.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="78" column="34" lean-forward="false" selection-start-line="78" selection-start-column="34" selection-end-line="78" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
