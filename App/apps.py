@@ -35,6 +35,11 @@ class MovieForm(forms.Form):
     m_movie = forms.FileField()
 
 
+class CommentFile(forms.Form):
+    commentUId = forms.CharField()
+    commentImg = forms.FileField()
+
+
 class UserForm(forms.Form):
     account = forms.CharField()
     username = forms.CharField()
@@ -460,6 +465,15 @@ class Comment:
             return 'success'
         except:
             return 'error'
+
+    def commit_hot_comment_file(self):
+        mf = CommentFile(self.post, self.files)
+        if mf.is_valid():
+            commentUId = mf.cleaned_data['commentUId']
+            commentImg = mf.mf.cleaned_data['commentImg']
+            print commentUId
+            print commentImg
+        pass
 
     def commit_hot_reply(self):
         try:
