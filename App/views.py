@@ -229,6 +229,7 @@ def commit_hot_file(request):
         hot_file = Comment(post=request.POST, files=request.FILES)
         return response_def(hot_file.commit_hot_comment_file())
 
+
 @csrf_exempt
 def commit_hot_reply(request):
     if request.POST:

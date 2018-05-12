@@ -37,7 +37,8 @@ class MovieForm(forms.Form):
 
 class CommentFile(forms.Form):
     commentUId = forms.CharField()
-    commentImg = forms.FileField()
+    commentText = forms.CharField()
+    # commentImg = forms.FileField()
 
 
 class UserForm(forms.Form):
@@ -60,6 +61,10 @@ def send_email(username, mail):
               html_message=msg
               )
     return rs
+
+
+def setpath(id, count, name):
+    return '%s%s%s' % (id, count, os.path.splitext(name)[1])
 
 
 def detection(account, type):
@@ -467,13 +472,24 @@ class Comment:
             return 'error'
 
     def commit_hot_comment_file(self):
-        mf = CommentFile(self.post, self.files)
+        mf = CommentFile(self.post)
         if mf.is_valid():
-            commentUId = mf.cleaned_data['commentUId']
-            commentImg = mf.mf.cleaned_data['commentImg']
-            print commentUId
-            print commentImg
-        pass
+            h_uid = mf.cleaned_data['commentUId']
+        #     commentImg = mf.cleaned_data['commentImg']
+            h_comment = mf.cleaned_data['commentText']
+            files = self.files.getlist('commentImg')
+            imgPath = ''
+            count = 0
+            for f in files:
+                count += 1
+                imgPath += '%s,' % setpath(h_uid, count, f.name)
+                des = open('./uploadFile/hotComment/img/'+setpath(h_uid, count, f.name), 'wb+')
+                for chunk in f.chunks():
+                    des.write(chunk)
+                des.close()
+            file = TbHotcomment(h_uid=h_uid, h_comment=h_comment, h_img=imgPath.rstrip(','))
+            file.save()
+            return 'success'
 
     def commit_hot_reply(self):
         try:
@@ -494,19 +510,19 @@ class Comment:
                 for c in hotcomment:
                     reply = TbHotreply.objects.filter(hr_fromid=c.h_id).count()
                     cuser = TbUsers.objects.get(u_id=c.h_uid)
-                    imgpath = File(c.h_img).name if c.h_img else ''
+                    imgPath = []
+                    if c.h_img:
+                        for img in c.h_img.split(','):
+                            path = '%s%s' % ('/uploadFile/hotComment/img/', img)
+                            imgPath.append(path)
                     videopath = File(c.h_video).name if c.h_video else ''
                     avatarPath = File(cuser.u_avatar).name if cuser.u_avatar else ''
                     isLike = False
                     if c.h_likes:
                         isLike = judge_like(self.u_id, c.h_likes)
-                        # for uid in c.h_likes.split(','):
-                        #     if len(uid) > 0 and uid == self.u_id:
-                        #         isLike = True
-                        #         break
                     ccomment = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': avatarPath, 'isLike': isLike,
-                                'comment': c.h_comment, 'img': imgpath, 'video': videopath, 'like': c.h_like,
-                                'commentId':c.h_id,'time':  str(c.h_time), 'replays': reply}
+                                'comment': c.h_comment, 'img': imgPath, 'video': videopath, 'like': c.h_like,
+                                'commentId': c.h_id, 'time':  str(c.h_time), 'replays': reply}
                     comments.append(ccomment)
                 return json.dumps(comments)
         except:
@@ -516,12 +532,18 @@ class Comment:
         try:
             comment = TbHotcomment.objects.get(h_id=self.hr_formId)
             cuser = TbUsers.objects.get(u_id=comment.h_uid)
+
+            imgPath = []
+            if comment.h_img:
+                for img in comment.h_img.split(','):
+                    path = 's%s%' % ('/uploadFile/hotComment/img/',img)
+                    imgPath.append(path)
             cavatar = File(cuser.u_avatar).name if cuser.u_avatar else ''
             cisLike = False
             if comment.h_likes:
                 cisLike = judge_like(self.u_id, comment.h_likes)
             replyInfo = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': cavatar, 'isLike': cisLike, 'like': comment.h_like,
-                         'comment': comment.h_comment, 'commentId': comment.h_id, 'time': str(comment.h_time), 'reply': []}
+                         'img': imgPath, 'comment': comment.h_comment, 'commentId': comment.h_id, 'time': str(comment.h_time), 'reply': []}
             replys = TbHotreply.objects.filter(hr_fromid=self.hr_formId)[self.start:self.limit]
             for r in replys:
                 user = TbUsers.objects.get(u_id=r.hr_uid)

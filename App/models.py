@@ -88,8 +88,8 @@ class TbHotcomment(models.Model):
     h_uid = models.IntegerField(blank=True, null=True)
     h_comment = models.CharField(max_length=200, blank=True, null=True)
     h_time = models.DateTimeField(auto_now_add=True, auto_now=False)
-    h_img = models.FileField(max_length=50, blank=True, null=True, upload_to='./uploadFile/hotComment/img')
-    h_video = models.FileField(max_length=50, blank=True, null=True, upload_to='./uploadFile/hotComment/video')
+    h_img = models.CharField(max_length=50, blank=True, null=True)
+    h_video = models.CharField(max_length=50, blank=True, null=True)
     h_likes = models.CharField(max_length=1000, blank=True, null=True)
     h_like = models.IntegerField(blank=True, null=True)
 

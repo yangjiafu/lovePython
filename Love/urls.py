@@ -40,5 +40,6 @@ urlpatterns = [
     url(r'^commitHotFile', views.commit_hot_file),
     url(r'^commitHotReply', views.commit_hot_reply),
     url(r'^getHotComment', views.get_hot_comment),
-    url(R'^doHotLike', views.do_comment_like)
+    url(r'^doHotLike', views.do_comment_like),
+    # url(r'^static/(?P<path>.*)$', 'django.views.static.serve')
 ]
