@@ -18,6 +18,10 @@ from django.contrib import admin
 # from . import view
 from App import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 urlpatterns = [
     # url(r'^hello$', views.hello),
     url(r'^$', views.usersdb),
@@ -41,5 +45,5 @@ urlpatterns = [
     url(r'^commitHotReply', views.commit_hot_reply),
     url(r'^getHotComment', views.get_hot_comment),
     url(r'^doHotLike', views.do_comment_like),
-    # url(r'^static/(?P<path>.*)$', 'django.views.static.serve')
+    url(r'^static/(?P<path>.*)$', static)
 ]

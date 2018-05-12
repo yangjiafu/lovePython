@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="864566d3-7800-4d1d-9da4-4ddd38a5ad0d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/App/apps.py" afterPath="$PROJECT_DIR$/App/apps.py" />
-      <change beforePath="$PROJECT_DIR$/App/models.py" afterPath="$PROJECT_DIR$/App/models.py" />
-      <change beforePath="$PROJECT_DIR$/App/views.py" afterPath="$PROJECT_DIR$/App/views.py" />
       <change beforePath="$PROJECT_DIR$/Love/settings.py" afterPath="$PROJECT_DIR$/Love/settings.py" />
       <change beforePath="$PROJECT_DIR$/Love/urls.py" afterPath="$PROJECT_DIR$/Love/urls.py" />
-      <change beforePath="$PROJECT_DIR$/../loveData/models备份.txt" afterPath="$PROJECT_DIR$/../loveData/models备份.txt" />
-      <change beforePath="$PROJECT_DIR$/../loveData/数据库.txt" afterPath="$PROJECT_DIR$/../loveData/数据库.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +17,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Love$love_debug.coverage" NAME="love debug Coverage Results" MODIFIED="1520399018241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Love$getImg.coverage" NAME="getImg Coverage Results" MODIFIED="1521179500398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../loveData" />
-    <SUITE FILE_PATH="coverage/Love$Love_debug.coverage" NAME="Love debug Coverage Results" MODIFIED="1526097465023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Love$Love_debug.coverage" NAME="Love debug Coverage Results" MODIFIED="1526131787702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -41,19 +36,29 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Love/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="44" column="1" lean-forward="true" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="164">
+              <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding>
+                <element signature="e#638#670#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Love/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="157" column="13" lean-forward="true" selection-start-line="157" selection-start-column="13" selection-end-line="157" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="178">
+              <caret line="137" column="23" lean-forward="true" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="23" />
+              <folding>
+                <element signature="e#306#315#0" expanded="true" />
+                <element signature="e#635#697#0" expanded="false" />
+                <element signature="e#1053#1272#0" expanded="false" />
+                <element signature="e#1287#1731#0" expanded="false" />
+                <element signature="e#1775#2246#0" expanded="false" />
+                <element signature="e#2382#2588#0" expanded="false" />
+                <element signature="e#2721#3117#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,8 +66,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="228" column="51" lean-forward="false" selection-start-line="228" selection-start-column="46" selection-end-line="228" selection-end-column="51" />
+            <state relative-caret-position="580">
+              <caret line="245" column="13" lean-forward="true" selection-start-line="245" selection-start-column="13" selection-end-line="245" selection-end-column="13" />
               <folding>
                 <element signature="e#2131#2342#0" expanded="false" />
                 <element signature="e#3499#3914#0" expanded="false" />
@@ -77,29 +82,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="apps.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/apps.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="490" column="23" lean-forward="true" selection-start-line="490" selection-start-column="23" selection-end-line="490" selection-end-column="23" />
+            <state relative-caret-position="182">
+              <caret line="548" column="23" lean-forward="true" selection-start-line="548" selection-start-column="23" selection-end-line="548" selection-end-column="23" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
-                <element signature="e#2922#3045#0" expanded="false" />
-                <element signature="e#4855#6133#0" expanded="false" />
-                <element signature="e#6173#6821#0" expanded="false" />
-                <element signature="e#6860#7986#0" expanded="false" />
-                <element signature="e#8028#8422#0" expanded="false" />
-                <element signature="e#8465#9220#0" expanded="false" />
-                <element signature="e#9259#10404#0" expanded="false" />
-                <element signature="e#14973#16326#0" expanded="false" />
-                <element signature="e#16382#16441#0" expanded="false" />
-                <element signature="e#16478#17824#0" expanded="false" />
-                <element signature="e#17864#18085#0" expanded="false" />
-                <element signature="e#18123#18339#0" expanded="false" />
-                <element signature="e#19457#19888#0" expanded="false" />
-                <element signature="e#22888#23707#0" expanded="false" />
-                <element signature="e#23746#24584#0" expanded="false" />
-                <element signature="e#24204#24584#0" expanded="false" />
+                <element signature="e#3027#3150#0" expanded="false" />
+                <element signature="e#4960#6238#0" expanded="false" />
+                <element signature="e#6278#6926#0" expanded="false" />
+                <element signature="e#6965#8091#0" expanded="false" />
+                <element signature="e#8133#8527#0" expanded="false" />
+                <element signature="e#8570#9325#0" expanded="false" />
+                <element signature="e#9364#10509#0" expanded="false" />
+                <element signature="e#10550#12185#0" expanded="false" />
+                <element signature="e#12337#13858#0" expanded="false" />
+                <element signature="e#14010#15046#0" expanded="false" />
+                <element signature="e#15078#16431#0" expanded="false" />
+                <element signature="e#16487#16546#0" expanded="false" />
+                <element signature="e#16583#17929#0" expanded="false" />
+                <element signature="e#17969#18190#0" expanded="false" />
+                <element signature="e#18228#18444#0" expanded="false" />
+                <element signature="e#19664#20095#0" expanded="false" />
+                <element signature="e#23045#23864#0" expanded="false" />
+                <element signature="e#23903#24741#0" expanded="false" />
+                <element signature="e#24361#24741#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -200,12 +208,12 @@
       <find>get</find>
       <find>getComment</find>
       <find>getNewMovie</find>
-      <find>time</find>
       <find>token</find>
       <find>MovieForm</find>
-      <find>setpath</find>
       <find>INSTALLED_APPS</find>
       <find>BASE_DIR</find>
+      <find>time</find>
+      <find>setpath</find>
     </findStrings>
     <replaceStrings>
       <replace>view</replace>
@@ -235,9 +243,9 @@
         <option value="$PROJECT_DIR$/App/models.py" />
         <option value="$PROJECT_DIR$/../loveData/数据库.txt" />
         <option value="$PROJECT_DIR$/../loveData/models备份.txt" />
-        <option value="$PROJECT_DIR$/App/apps.py" />
-        <option value="$PROJECT_DIR$/Love/settings.py" />
         <option value="$PROJECT_DIR$/Love/urls.py" />
+        <option value="$PROJECT_DIR$/Love/settings.py" />
+        <option value="$PROJECT_DIR$/App/apps.py" />
       </list>
     </option>
   </component>
@@ -247,9 +255,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="40" />
-    <option name="y" value="126" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
     <option name="width" value="1386" />
     <option name="height" value="645" />
   </component>
@@ -285,6 +292,27 @@
             <path>
               <item name="Love" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Love" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Love" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="hotComment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Love" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Love" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="hotComment" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Love" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Love" type="462c0819:PsiDirectoryNode" />
               <item name="uploadFile" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -307,9 +335,9 @@
       <recent name="I:\loveWhatch\loveData\imgDATA" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="I:\loveWhatch\Love\App\static" />
       <recent name="I:\loveWhatch\Love\Love\static" />
       <recent name="I:\loveWhatch\Love\common_static" />
-      <recent name="I:\loveWhatch\Love\App\static" />
       <recent name="I:\loveWhatch\Love\uploadFile\covers" />
     </key>
   </component>
@@ -631,7 +659,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526094981575</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="上传图片接口">
+      <created>1526115693107</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1526115693107</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -644,7 +679,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="40" y="126" width="1386" height="645" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -652,15 +687,15 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37795275" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12971343" sideWeight="0.4906542" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47116968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22541603" sideWeight="0.4906542" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.020491803" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2708018" sideWeight="0.50934577" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44645798" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44645798" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -742,7 +777,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="138" />
+      <option name="time" value="142" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1058,32 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="490" column="23" lean-forward="true" selection-start-line="490" selection-start-column="23" selection-end-line="490" selection-end-column="23" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-            <element signature="e#2922#3045#0" expanded="false" />
-            <element signature="e#4855#6133#0" expanded="false" />
-            <element signature="e#6173#6821#0" expanded="false" />
-            <element signature="e#6860#7986#0" expanded="false" />
-            <element signature="e#8028#8422#0" expanded="false" />
-            <element signature="e#8465#9220#0" expanded="false" />
-            <element signature="e#9259#10404#0" expanded="false" />
-            <element signature="e#14973#16326#0" expanded="false" />
-            <element signature="e#16382#16441#0" expanded="false" />
-            <element signature="e#16478#17824#0" expanded="false" />
-            <element signature="e#17864#18085#0" expanded="false" />
-            <element signature="e#18123#18339#0" expanded="false" />
-            <element signature="e#19457#19888#0" expanded="false" />
-            <element signature="e#22888#23707#0" expanded="false" />
-            <element signature="e#23746#24584#0" expanded="false" />
-            <element signature="e#24204#24584#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1102,16 +1111,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Love/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="44" column="1" lean-forward="true" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="164">
+          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Love/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="137" column="23" lean-forward="true" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="23" />
+          <folding>
+            <element signature="e#306#315#0" expanded="true" />
+            <element signature="e#635#697#0" expanded="false" />
+            <element signature="e#1053#1272#0" expanded="false" />
+            <element signature="e#1287#1731#0" expanded="false" />
+            <element signature="e#1775#2246#0" expanded="false" />
+            <element signature="e#2382#2588#0" expanded="false" />
+            <element signature="e#2721#3117#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="228" column="51" lean-forward="false" selection-start-line="228" selection-start-column="46" selection-end-line="228" selection-end-column="51" />
+        <state relative-caret-position="580">
+          <caret line="245" column="13" lean-forward="true" selection-start-line="245" selection-start-column="13" selection-end-line="245" selection-end-column="13" />
           <folding>
             <element signature="e#2131#2342#0" expanded="false" />
             <element signature="e#3499#3914#0" expanded="false" />
@@ -1125,11 +1152,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Love/settings.py">
+    <entry file="file://$PROJECT_DIR$/App/apps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="157" column="13" lean-forward="true" selection-start-line="157" selection-start-column="13" selection-end-line="157" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="182">
+          <caret line="548" column="23" lean-forward="true" selection-start-line="548" selection-start-column="23" selection-end-line="548" selection-end-column="23" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+            <element signature="e#3027#3150#0" expanded="false" />
+            <element signature="e#4960#6238#0" expanded="false" />
+            <element signature="e#6278#6926#0" expanded="false" />
+            <element signature="e#6965#8091#0" expanded="false" />
+            <element signature="e#8133#8527#0" expanded="false" />
+            <element signature="e#8570#9325#0" expanded="false" />
+            <element signature="e#9364#10509#0" expanded="false" />
+            <element signature="e#10550#12185#0" expanded="false" />
+            <element signature="e#12337#13858#0" expanded="false" />
+            <element signature="e#14010#15046#0" expanded="false" />
+            <element signature="e#15078#16431#0" expanded="false" />
+            <element signature="e#16487#16546#0" expanded="false" />
+            <element signature="e#16583#17929#0" expanded="false" />
+            <element signature="e#17969#18190#0" expanded="false" />
+            <element signature="e#18228#18444#0" expanded="false" />
+            <element signature="e#19664#20095#0" expanded="false" />
+            <element signature="e#23045#23864#0" expanded="false" />
+            <element signature="e#23903#24741#0" expanded="false" />
+            <element signature="e#24361#24741#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

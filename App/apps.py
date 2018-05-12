@@ -11,6 +11,7 @@ import re
 from django.core.mail import send_mail
 from django import forms
 
+import time
 import Love.settings
 import threading
 import hashlib
@@ -63,8 +64,11 @@ def send_email(username, mail):
     return rs
 
 
-def setpath(id, count, name):
-    return '%s%s%s' % (id, count, os.path.splitext(name)[1])
+def setpath(name):
+    fn = time.strftime('%Y%m%d%H%M%S')
+    rd = random.randint(0, 100)
+    rs = random.randint(0, 9)
+    return '%s%s%s%s' % (fn, rs, rd, os.path.splitext(name)[1])
 
 
 def detection(account, type):
@@ -472,24 +476,27 @@ class Comment:
             return 'error'
 
     def commit_hot_comment_file(self):
-        mf = CommentFile(self.post)
-        if mf.is_valid():
-            h_uid = mf.cleaned_data['commentUId']
-        #     commentImg = mf.cleaned_data['commentImg']
-            h_comment = mf.cleaned_data['commentText']
-            files = self.files.getlist('commentImg')
-            imgPath = ''
-            count = 0
-            for f in files:
-                count += 1
-                imgPath += '%s,' % setpath(h_uid, count, f.name)
-                des = open('./uploadFile/hotComment/img/'+setpath(h_uid, count, f.name), 'wb+')
-                for chunk in f.chunks():
-                    des.write(chunk)
-                des.close()
-            file = TbHotcomment(h_uid=h_uid, h_comment=h_comment, h_img=imgPath.rstrip(','))
-            file.save()
-            return 'success'
+        try:
+            mf = CommentFile(self.post)
+            if mf.is_valid():
+                h_uid = mf.cleaned_data['commentUId']
+            #     commentImg = mf.cleaned_data['commentImg']
+                h_comment = mf.cleaned_data['commentText']
+                files = self.files.getlist('commentImg')
+                imgPath = ''
+                for f in files:
+                    # imgPath += 0
+                    paths = setpath(f.name)
+                    imgPath += '%s,' % paths
+                    des = open('./App/static/hotComment/img/'+paths, 'wb+')
+                    for chunk in f.chunks():
+                        des.write(chunk)
+                    des.close()
+                file = TbHotcomment(h_uid=h_uid, h_comment=h_comment, h_img=imgPath.rstrip(','))
+                file.save()
+                return 'success'
+        except:
+            return 'error'
 
     def commit_hot_reply(self):
         try:
@@ -513,7 +520,7 @@ class Comment:
                     imgPath = []
                     if c.h_img:
                         for img in c.h_img.split(','):
-                            path = '%s%s' % ('/uploadFile/hotComment/img/', img)
+                            path = '%s%s' % ('static/hotComment/img/', img)
                             imgPath.append(path)
                     videopath = File(c.h_video).name if c.h_video else ''
                     avatarPath = File(cuser.u_avatar).name if cuser.u_avatar else ''
@@ -529,34 +536,34 @@ class Comment:
             return 'error'
 
     def get_hot_replys(self):
-        try:
-            comment = TbHotcomment.objects.get(h_id=self.hr_formId)
-            cuser = TbUsers.objects.get(u_id=comment.h_uid)
-
-            imgPath = []
-            if comment.h_img:
-                for img in comment.h_img.split(','):
-                    path = 's%s%' % ('/uploadFile/hotComment/img/',img)
-                    imgPath.append(path)
-            cavatar = File(cuser.u_avatar).name if cuser.u_avatar else ''
-            cisLike = False
-            if comment.h_likes:
-                cisLike = judge_like(self.u_id, comment.h_likes)
-            replyInfo = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': cavatar, 'isLike': cisLike, 'like': comment.h_like,
-                         'img': imgPath, 'comment': comment.h_comment, 'commentId': comment.h_id, 'time': str(comment.h_time), 'reply': []}
-            replys = TbHotreply.objects.filter(hr_fromid=self.hr_formId)[self.start:self.limit]
-            for r in replys:
-                user = TbUsers.objects.get(u_id=r.hr_uid)
-                isLike = False
-                if r.hr_likes:
-                    isLike = judge_like(self.u_id, r.hr_likes)
-                avatar = File(user.u_avatar).name if user.u_avatar else ''
-                content = {'name': user.u_name, 'id': user.u_id, 'avatar': avatar, 'isLike': isLike, 'like': r.hr_like,
-                           'reply': r.hr_content, 'time': str(r.hr_time), 'replyId': r.hr_id}
-                replyInfo['reply'].append(content)
-            return json.dumps(replyInfo)
-        except:
-            return 'error'
+        # try:
+        comment = TbHotcomment.objects.get(h_id=self.hr_formId)
+        cuser = TbUsers.objects.get(u_id=comment.h_uid)
+        imgPath = []
+        if comment.h_img:
+            for img in comment.h_img.split(','):
+                img = img if len(img) > 0 else ''
+                path = '%s%s' % ('static/hotComment/img/', img)
+                imgPath.append(path)
+        cavatar = File(cuser.u_avatar).name if cuser.u_avatar else ''
+        cisLike = False
+        if comment.h_likes:
+            cisLike = judge_like(self.u_id, comment.h_likes)
+        replyInfo = {'name': cuser.u_name, 'id': cuser.u_id, 'avatar': cavatar, 'isLike': cisLike, 'like': comment.h_like,
+                     'img': imgPath, 'comment': comment.h_comment, 'commentId': comment.h_id, 'time': str(comment.h_time), 'reply': []}
+        replys = TbHotreply.objects.filter(hr_fromid=self.hr_formId)[self.start:self.limit]
+        for r in replys:
+            user = TbUsers.objects.get(u_id=r.hr_uid)
+            isLike = False
+            if r.hr_likes:
+                isLike = judge_like(self.u_id, r.hr_likes)
+            avatar = File(user.u_avatar).name if user.u_avatar else ''
+            content = {'name': user.u_name, 'id': user.u_id, 'avatar': avatar, 'isLike': isLike, 'like': r.hr_like,
+                       'reply': r.hr_content, 'time': str(r.hr_time), 'replyId': r.hr_id}
+            replyInfo['reply'].append(content)
+        return json.dumps(replyInfo)
+        # except:
+        #     return 'error'
 
     def do_comment_like(self):
         comment = TbHotcomment.objects.get(h_id=self.comment_id)
