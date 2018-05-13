@@ -76,7 +76,7 @@ class TbComment(models.Model):
     topic_id = models.IntegerField(blank=True, null=True)
     content = models.CharField(max_length=150, blank=True, null=True)
     form_uid = models.IntegerField(blank=True, null=True)
-    form_time = models.DateTimeField(auto_now_add=True)
+    form_time = models.DateTimeField()
 
     class Meta:
         managed = False
@@ -87,8 +87,8 @@ class TbHotcomment(models.Model):
     h_id = models.AutoField(primary_key=True)
     h_uid = models.IntegerField(blank=True, null=True)
     h_comment = models.CharField(max_length=200, blank=True, null=True)
-    h_time = models.DateTimeField(auto_now_add=True, auto_now=False)
-    h_img = models.CharField(max_length=50, blank=True, null=True)
+    h_time = models.DateTimeField()
+    h_img = models.CharField(max_length=400, blank=True, null=True)
     h_video = models.CharField(max_length=50, blank=True, null=True)
     h_likes = models.CharField(max_length=1000, blank=True, null=True)
     h_like = models.IntegerField(blank=True, null=True)
@@ -102,7 +102,7 @@ class TbHotreply(models.Model):
     hr_id = models.AutoField(primary_key=True)
     hr_uid = models.IntegerField(blank=True, null=True)
     hr_content = models.CharField(max_length=150, blank=True, null=True)
-    hr_time = models.DateTimeField(auto_now_add=True)
+    hr_time = models.DateTimeField()
     hr_likes = models.CharField(max_length=1000, blank=True, null=True)
     hr_like = models.IntegerField(blank=True, null=True)
     hr_fromid = models.IntegerField(blank=True, null=True)
@@ -112,11 +112,12 @@ class TbHotreply(models.Model):
         managed = False
         db_table = 'tb_hotreply'
 
+
 class TbMovies(models.Model):
     m_id = models.AutoField(primary_key=True)
     m_name = models.CharField(max_length=50)
     m_othername = models.CharField(max_length=512, blank=True, null=True)
-    m_cover = models.FileField(max_length=100, blank=True, null=True, upload_to='./uploadFile/covers')
+    m_cover = models.CharField(max_length=100, blank=True, null=True)
     m_actor = models.CharField(max_length=1024, blank=True, null=True)
     m_director = models.CharField(max_length=200, blank=True, null=True)
     m_classify = models.CharField(max_length=40, blank=True, null=True)
@@ -127,7 +128,7 @@ class TbMovies(models.Model):
     m_score = models.CharField(max_length=10, blank=True, null=True)
     m_shortcomment = models.CharField(max_length=1024, blank=True, null=True)
     m_synopsis = models.CharField(max_length=2048, blank=True, null=True)
-    m_linkinfo = models.FileField(db_column='m_linkInfo', max_length=3072, upload_to='./uploadFile/movies')  # Field name made lowercase.
+    m_linkinfo = models.CharField(db_column='m_linkInfo', max_length=3072)  # Field name made lowercase.
     m_info = models.CharField(max_length=1024, blank=True, null=True)
     m_userid = models.CharField(max_length=10, blank=True, null=True)
     m_plays = models.IntegerField(blank=True, null=True)
@@ -144,7 +145,7 @@ class TbReply(models.Model):
     reply_id = models.IntegerField(blank=True, null=True)
     content = models.CharField(max_length=150, blank=True, null=True)
     form_uid = models.IntegerField(blank=True, null=True)
-    form_time = models.DateTimeField(auto_now_add=True)
+    form_time = models.DateTimeField()
 
     class Meta:
         managed = False
@@ -159,16 +160,17 @@ class TbUsers(models.Model):
     u_age = models.IntegerField(blank=True, null=True)
     token = models.CharField(max_length=50, blank=True, null=True)
     u_vip = models.IntegerField(blank=True, null=True)
-    u_email = models.CharField(max_length=30, blank=True)
+    u_email = models.CharField(max_length=30)
     u_likemovies = models.CharField(max_length=30, blank=True, null=True)
     u_duration = models.CharField(max_length=4, blank=True, null=True)
     u_recording = models.CharField(max_length=30, blank=True, null=True)
     u_recommendmovie = models.CharField(db_column='u_recommendMovie', max_length=30, blank=True, null=True)  # Field name made lowercase.
-    u_account = models.CharField(unique=True, max_length=20, null=True)
+    u_account = models.CharField(unique=True, max_length=20, blank=True, null=True)
     is_active = models.CharField(max_length=1, blank=True, null=True)
     u_code = models.CharField(max_length=4, blank=True, null=True)
     u_ip = models.CharField(max_length=15, blank=True, null=True)
-    u_avatar = models.FileField(max_length=50, blank=True, null=True, upload_to='./uploadFile/user_avatar')
+    u_avatar = models.CharField(max_length=50, blank=True, null=True)
+    admin = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -176,7 +178,7 @@ class TbUsers(models.Model):
 
 
 class TbVideo(models.Model):
-    v_path = models.FileField(max_length=30, blank=True, null=True, upload_to='./uploadFile')
+    v_path = models.CharField(max_length=30, blank=True, null=True)
     v_name = models.CharField(primary_key=True, max_length=50)
 
     class Meta:

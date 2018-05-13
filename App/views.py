@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from App.models import TbMovies, TbUsers, TbVideo
 from App.apps import User, Search, Movies, Comment
+
 from django.conf import settings
 from django.core.mail import send_mail
 # 上传图片添加项
@@ -258,3 +259,10 @@ def do_comment_like(request):
         elif request.POST['type'] == 'reply':
             reply_like = Comment(u_id=request.POST['u_id'], reply_id=request.POST['reply_id'])
             return response_def(reply_like.do_reply_like())
+
+
+# @csrf_exempt
+# def get_users(request):
+#     if request.POST:
+#         users = Admin(u_id=request.POST['id'])
+#         return response_def(users.get_users())

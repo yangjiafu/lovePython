@@ -32,6 +32,7 @@ urlpatterns = [
     # url(r'^goEmail', views.doemail),
     url(r'^registered', views.registered),
     url(r'^getEmailCode', views.get_email_code),
+    # url(r'^getUsers', views.get_users),
     url(r'^searchMovie', views.search_movie),
     url(r'^uploadImg', views.upload_img),
     url(r'^uploadVideo', views.upload_video),

@@ -102,10 +102,11 @@ def push_movie(m):
 
 def judge_like(pid, likes):
     isLike = False
-    for uid in likes.split(','):
-        if len(uid) > 0 and uid == pid:
-            isLike = True
-            break
+    if likes:
+        for uid in likes.split(','):
+            if len(uid) > 0 and uid == pid:
+                isLike = True
+                break
     return isLike
 
 
@@ -137,7 +138,7 @@ class User:
                 if self.pwd == res.u_pwd:
                     tokens = hashlib.sha1(os.urandom(10)).hexdigest()
                     TbUsers.objects.filter(u_email=self.account).update(token=tokens)
-                    s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
+                    s = {'id': res.u_id, 'avatar': res.u_avatar, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
                          'token': tokens}
                     return json.dumps(s)
                 else:
@@ -150,7 +151,7 @@ class User:
                 if self.pwd == res.u_pwd:
                     tokens = hashlib.sha1(os.urandom(24)).hexdigest()
                     TbUsers.objects.filter(u_account=self.account).update(token=tokens)
-                    s = {'id': res.u_id, 'pwd': res.u_pwd, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
+                    s = {'id': res.u_id, 'avatar': res.u_avatar, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
                          'token': tokens}
                     return json.dumps(s)
                 else:
