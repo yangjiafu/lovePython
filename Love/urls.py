@@ -28,7 +28,7 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^login$', views.user_login),
     url(r'^adminLogin$', views.admin_login),
-    url(r'^removeUser', views.remove_user),
+    url(r'^deleteUser', views.delete_user),
     url(r'^editPwd$', views.edit_pwd),
     url(r'^tokenlogin', views.token_login),
     # url(r'^goEmail', views.doemail),

@@ -414,13 +414,13 @@ class Movies:
             movies['war'] = push_movie(warmovie)
             return json.dumps(movies)
         else:
-            pass
-            # for i in movies:
-            #     ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor,
-            #            'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
-            #            'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score,
-            #            'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name}
-            #     info.append(ins)
+            movies = TbMovies.objects.order_by('-m_id')[self.start:self.limit]
+            info = []
+            for i in movies:
+                ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': i.m_cover, 'classify': i.m_classify,
+                       'like': i.m_like, 'linkInfo': i.m_linkinfo}
+                info.append(ins)
+            return json.dumps(info)
 
 
 class Comment:
