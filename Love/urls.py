@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
+# from django.contrib import admin
 # from . import view
-from App import views
+from App import views, admin
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,14 +25,16 @@ from django.conf.urls.static import static
 urlpatterns = [
     # url(r'^hello$', views.hello),
     url(r'^$', views.usersdb),
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
     url(r'^login$', views.user_login),
+    url(r'^adminLogin$', views.admin_login),
+    url(r'^removeUser', views.remove_user),
     url(r'^editPwd$', views.edit_pwd),
     url(r'^tokenlogin', views.token_login),
     # url(r'^goEmail', views.doemail),
     url(r'^registered', views.registered),
     url(r'^getEmailCode', views.get_email_code),
-    # url(r'^getUsers', views.get_users),
+    url(r'^getUsers', views.get_users),
     url(r'^searchMovie', views.search_movie),
     url(r'^uploadImg', views.upload_img),
     url(r'^uploadVideo', views.upload_video),

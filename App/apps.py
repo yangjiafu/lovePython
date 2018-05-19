@@ -95,7 +95,8 @@ def detection(account, type):
 def push_movie(m):
     arr = []
     for i in m:
-        ins = {'id': i.m_id, 'name': i.m_name, 'cover': File(i.m_cover).name, 'score': i.m_score}
+        # ins = {'id': i.m_id, 'name': i.m_name, 'cover': File(i.m_cover).name, 'score': i.m_score}
+        ins = {'id': i.m_id, 'name': i.m_name, 'cover': i.m_cover, 'score': i.m_score}
         arr.append(ins)
     return arr
 
@@ -135,14 +136,17 @@ class User:
         if re.match(str, self.account):
             try:
                 res = TbUsers.objects.get(u_email=self.account)
-                if self.pwd == res.u_pwd:
-                    tokens = hashlib.sha1(os.urandom(10)).hexdigest()
-                    TbUsers.objects.filter(u_email=self.account).update(token=tokens)
-                    s = {'id': res.u_id, 'avatar': res.u_avatar, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
-                         'token': tokens}
-                    return json.dumps(s)
+                if res.is_active == '1':
+                    if self.pwd == res.u_pwd:
+                        tokens = hashlib.sha1(os.urandom(10)).hexdigest()
+                        TbUsers.objects.filter(u_email=self.account).update(token=tokens)
+                        s = {'id': res.u_id, 'avatar': res.u_avatar, 'name': res.u_name, 'email': res.u_email, 'vip': res.u_vip,
+                             'token': tokens}
+                        return json.dumps(s)
+                    else:
+                        return 'error'
                 else:
-                    return 'error'
+                    return 'account error'
             except TbUsers.DoesNotExist:
                 return 'not'
         else:
@@ -358,8 +362,8 @@ class Search:
                             if u == self.movie:
                                 islike = 1
                                 break
-                    ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': File(i.m_cover).name, 'actor': i.m_actor, 'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
-                           'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score, 'synopsis': i.m_synopsis, 'linkInfo': File(i.m_linkinfo).name, 'like': i.m_like, 'dislike': i.m_dislike, 'islike': islike}
+                    ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': i.m_cover, 'actor': i.m_actor, 'director': i.m_director, 'classify': i.m_classify, 'area': i.m_area, 'language': i.m_language,
+                           'releasetime': i.m_releasetime, 'duration': i.m_duration, 'score': i.m_score, 'synopsis': i.m_synopsis, 'linkInfo': i.m_linkinfo, 'like': i.m_like, 'dislike': i.m_dislike, 'islike': islike}
                     info.append(ins)
                 return json.dumps(info)
             else:
@@ -477,7 +481,7 @@ class Comment:
             return 'error'
 
     def commit_hot_comment_file(self):
-        try:
+        # try:
             mf = CommentFile(self.post)
             if mf.is_valid():
                 h_uid = mf.cleaned_data['commentUId']
@@ -493,11 +497,11 @@ class Comment:
                     for chunk in f.chunks():
                         des.write(chunk)
                     des.close()
-                file = TbHotcomment(h_uid=h_uid, h_comment=h_comment, h_img=imgPath.rstrip(','))
+                file = TbHotcomment(h_uid=h_uid, h_comment=h_comment, h_img=imgPath.rstrip(','), h_like=0)
                 file.save()
                 return 'success'
-        except:
-            return 'error'
+        # except:
+        #     return 'error'
 
     def commit_hot_reply(self):
         try:
@@ -523,8 +527,8 @@ class Comment:
                         for img in c.h_img.split(','):
                             path = '%s%s' % ('static/hotComment/img/', img)
                             imgPath.append(path)
-                    videopath = File(c.h_video).name if c.h_video else ''
-                    avatarPath = File(cuser.u_avatar).name if cuser.u_avatar else ''
+                    videopath = c.h_video.name if c.h_video else ''
+                    avatarPath = cuser.u_avatar.name if cuser.u_avatar else ''
                     isLike = False
                     if c.h_likes:
                         isLike = judge_like(self.u_id, c.h_likes)
@@ -546,7 +550,7 @@ class Comment:
                 img = img if len(img) > 0 else ''
                 path = '%s%s' % ('static/hotComment/img/', img)
                 imgPath.append(path)
-        cavatar = File(cuser.u_avatar).name if cuser.u_avatar else ''
+        cavatar = cuser.u_avatar if cuser.u_avatar else ''
         cisLike = False
         if comment.h_likes:
             cisLike = judge_like(self.u_id, comment.h_likes)
@@ -558,7 +562,7 @@ class Comment:
             isLike = False
             if r.hr_likes:
                 isLike = judge_like(self.u_id, r.hr_likes)
-            avatar = File(user.u_avatar).name if user.u_avatar else ''
+            avatar = user.u_avatar if user.u_avatar else ''
             content = {'name': user.u_name, 'id': user.u_id, 'avatar': avatar, 'isLike': isLike, 'like': r.hr_like,
                        'reply': r.hr_content, 'time': str(r.hr_time), 'replyId': r.hr_id}
             replyInfo['reply'].append(content)
@@ -578,9 +582,10 @@ class Comment:
         else:
             h_like = comment.h_like if comment.h_like else 0
             islikeid = []
-            for cuid in comment.h_likes.split(','):
-                if len(cuid) > 0:
-                    islikeid.append(cuid)
+            if h_like != 0:
+                for cuid in h_like.split(','):
+                    if len(cuid) > 0:
+                        islikeid.append(cuid)
             islikeid.append(self.u_id)
             TbHotcomment.objects.filter(h_id=self.comment_id).update(h_likes=','.join(islikeid), h_like=h_like+1)
             return 'add'

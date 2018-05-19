@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from App.models import TbMovies, TbUsers, TbVideo
 from App.apps import User, Search, Movies, Comment
+from App.admin import Admin
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -23,10 +24,12 @@ import threading
 import hashlib
 import os
 
+from App.tools import response_def
 
-def response_def(func):
-    func = func
-    return HttpResponse(func, content_type='application/json')
+
+# def response_def(func):
+#     func = func
+#     return HttpResponse(func, content_type='application/json')
 
 
 @csrf_exempt
@@ -78,6 +81,24 @@ def user_login(request):
         return response_def(u_login.user_login())
     else:
         return response_def('not support get submit')
+
+
+@csrf_exempt
+def admin_login(request):
+    if request.POST:
+        u_login = Admin(account=request.POST['account'], pwd=request.POST['pwd'])
+        return response_def(u_login.admin_login())
+    else:
+        return response_def('not support get submit')
+
+
+@csrf_exempt
+def remove_user(request):
+    if len(request.POST['token']) > 0:
+        remove_u = Admin(token=request.POST['token'], id=request.POST['id'])
+        return response_def(remove_u.remove_user())
+    else:
+        return response_def('token error')
 
 
 @csrf_exempt
@@ -261,8 +282,10 @@ def do_comment_like(request):
             return response_def(reply_like.do_reply_like())
 
 
-# @csrf_exempt
-# def get_users(request):
-#     if request.POST:
-#         users = Admin(u_id=request.POST['id'])
-#         return response_def(users.get_users())
+@csrf_exempt
+def get_users(request):
+    if request.GET:
+        users = Admin(u_id=request.GET['id'])
+        return response_def(users.get_user())
+    else:
+        return response_def('error')
