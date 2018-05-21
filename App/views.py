@@ -96,7 +96,7 @@ def admin_login(request):
 def delete_user(request):
     if len(request.POST['token']) > 0:
         remove_u = Admin(token=request.POST['token'], id=request.POST['id'])
-        return response_def(remove_u.remove_user())
+        return response_def(remove_u.del_user_info())
     else:
         return response_def('token error')
 

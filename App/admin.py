@@ -8,6 +8,7 @@ from django.conf import settings
 from django.apps import AppConfig
 from django.core.files import File
 from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment, TbHotcomment, TbHotreply
+from App.tools import del_comment, del_hot_comment, del_hot_reply, del_reply, del_user
 import Love.settings
 import json
 import time
@@ -68,11 +69,23 @@ class Admin:
             arr.append(res)
         return json.dumps(arr)
 
-    def remove_user(self):
-        token = TbUsers.objects.get(token=self.token)
-        if token:
-            deluser = TbUsers.objects.get(u_id=self.id).delete()
-            if deluser:
-                return 'success'
-        else:
-            return 'token error'
+    def del_user_info(self):
+        try:
+            token = TbUsers.objects.get(token=self.token)
+            if token.u_id:
+                if del_hot_reply(self.id) and del_hot_comment(self.id):
+                    if del_reply(self.id) and del_comment(self.id):
+                        if del_user(self.id):
+                            return json.dumps('success')
+                        else:
+                            return json.dumps('delete user error')
+                    else:
+                        return json.dumps('delete comment error')
+                else:
+                    return json.dumps('delete hot error')
+            else:
+                return json.dumps('token error')
+        except:
+            return json.dumps('token error')
+
+
