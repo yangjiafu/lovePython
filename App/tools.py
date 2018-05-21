@@ -25,9 +25,12 @@ def del_user(id):
         return False
 
 
-def del_hot_comment(id):
+def del_hot_comment(type, id):
     try:
-        hotComment = TbHotcomment.objects.filter(h_uid=id)
+        if type == 'uid':
+            hotComment = TbHotcomment.objects.filter(h_uid=id)
+        else:
+            hotComment = TbHotcomment.objects.filter(h_id=id)
         for h in hotComment:
             file = 'App/static/hotComment/img/%s' % h.h_img
             if h.h_img and os.path.exists(file):
@@ -38,27 +41,40 @@ def del_hot_comment(id):
         return False
 
 
-def del_hot_reply(id):
+def del_hot_reply(type, id):
     try:
-        hotreply = TbHotreply.objects.filter(hr_uid=id)
+        if type == 'uid':
+            hotreply = TbHotreply.objects.filter(hr_uid=id)
+        elif type == 'cid':
+            hotreply = TbHotreply.objects.filter(hr_fromid=id)
+        else:
+            hotreply = TbHotreply.objects.filter(hr_id=id)
         hotreply.delete()
         return True
     except:
         return False
 
 
-def del_reply(id):
+def del_reply(type, id):
     try:
-        reply = TbReply.objects.filter(form_uid=id)
+        if type == 'uid':
+            reply = TbReply.objects.filter(form_uid=id)
+        elif type == 'cid':
+            reply = TbReply.objects.filter(reply_id=id)
+        else:
+            reply = TbReply.objects.filter(r_id=id)
         reply.delete()
         return True
     except:
         return False
 
 
-def del_comment(id):
+def del_comment(type, id):
     try:
-        comment = TbComment.objects.filter(form_uid=id)
+        if type == 'uid':
+            comment = TbComment.objects.filter(form_uid=id)
+        else:
+            comment = TbComment.objects.filter(hr_id=id)
         comment.delete()
         return True
     except:

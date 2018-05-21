@@ -100,6 +100,12 @@ def delete_user(request):
     else:
         return response_def('token error')
 
+@csrf_exempt
+def delete_comment(request):
+    if request.POST:
+        if request.POST['type'] == 'hot':
+            del_hot = Admin(token=request.POST['token'], id=request.POST['id'])
+            return response_def(del_hot.del_hot_comment())
 
 @csrf_exempt
 def token_login(request):

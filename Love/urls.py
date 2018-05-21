@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^login$', views.user_login),
     url(r'^adminLogin$', views.admin_login),
     url(r'^deleteUser', views.delete_user),
+    url(r'^delComment', views.delete_comment),
     url(r'^editPwd$', views.edit_pwd),
     url(r'^tokenlogin', views.token_login),
     # url(r'^goEmail', views.doemail),

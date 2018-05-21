@@ -73,8 +73,8 @@ class Admin:
         try:
             token = TbUsers.objects.get(token=self.token)
             if token.u_id:
-                if del_hot_reply(self.id) and del_hot_comment(self.id):
-                    if del_reply(self.id) and del_comment(self.id):
+                if del_hot_reply('uid', self.id) and del_hot_comment('uid', self.id):
+                    if del_reply('uid', self.id) and del_comment('uid', self.id):
                         if del_user(self.id):
                             return json.dumps('success')
                         else:
@@ -88,4 +88,11 @@ class Admin:
         except:
             return json.dumps('token error')
 
-
+    def del_hot_comment(self):
+        if del_hot_comment('cid', self.id):
+            if del_hot_reply('cid', self.id):
+                return json.dumps('success')
+            else:
+                return json.dumps('reply error')
+        else:
+            return json.dumps('reply error')
