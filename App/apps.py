@@ -5,6 +5,7 @@ from django.conf import settings
 from django.apps import AppConfig
 from django.core.files import File
 from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment, TbHotcomment, TbHotreply
+from App.tools import setpath, send_email
 import json
 import random
 import re
@@ -17,23 +18,11 @@ import threading
 import hashlib
 import os
 
+_sysPath = 'http://localhost:8000/'
 
 class AppConfig(AppConfig):
     name = 'App'
 
-
-class MovieForm(forms.Form):
-    movieName = forms.CharField()
-    otherName = forms.CharField()
-    actors = forms.CharField()
-    director = forms.CharField()
-    classify = forms.CharField()
-    area = forms.CharField()
-    language = forms.CharField()
-    releasetime = forms.CharField()
-    score = forms.CharField()
-    m_poster = forms.FileField()
-    m_movie = forms.FileField()
 
 
 class CommentFile(forms.Form):
@@ -50,25 +39,6 @@ class UserForm(forms.Form):
     # gender = forms.CharField()
     # age = forms.CharField()
     # avatar = forms.FileField()
-
-
-def send_email(username, mail):
-    rs = random.sample('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 4)
-    rs = ''.join(rs)
-    msg = u'%s你好：<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你的随机验证码为：' \
-          u'<a style="color:red">%s</a><span style="font-size:10px">（忽略大小写）</span>' % (username, rs)
-    send_mail(u'邮箱验证码', 'actions', settings.EMAIL_HOST_USER,
-              [mail],
-              html_message=msg
-              )
-    return rs
-
-
-def setpath(name):
-    fn = time.strftime('%Y%m%d%H%M%S')
-    rd = random.randint(0, 100)
-    rs = random.randint(0, 9)
-    return '%s%s%s%s' % (fn, rs, rd, os.path.splitext(name)[1])
 
 
 def detection(account, type):
@@ -96,7 +66,7 @@ def push_movie(m):
     arr = []
     for i in m:
         # ins = {'id': i.m_id, 'name': i.m_name, 'cover': File(i.m_cover).name, 'score': i.m_score}
-        ins = {'id': i.m_id, 'name': i.m_name, 'cover': i.m_cover, 'score': i.m_score}
+        ins = {'id': i.m_id, 'name': i.m_name, 'cover': i.m_cover.replace('PATH_', '%sstatic/movies/img/' % _sysPath), 'score': i.m_score}
         arr.append(ins)
     return arr
 
@@ -377,27 +347,6 @@ class Movies:
         for k, w in kw.iteritems():
             setattr(self, k, w)
 
-    def upload_movie(self):
-        mf = MovieForm(self.post, self.files)
-        if mf.is_valid():
-            movieName = mf.cleaned_data['movieName']
-            otherName = mf.cleaned_data['otherName']
-            actors = mf.cleaned_data['actors']
-            director = mf.cleaned_data['director']
-            classify = mf.cleaned_data['classify']
-            area = mf.cleaned_data['area']
-            language = mf.cleaned_data['language']
-            releasetime = mf.cleaned_data['releasetime']
-            score = mf.cleaned_data['score']
-            m_poster = mf.cleaned_data['m_poster']
-            m_movie = mf.cleaned_data['m_movie']
-            upData = TbMovies(m_name=movieName, m_othername=otherName, m_actor=actors, m_director=director,
-                              m_classify=classify, m_area=area, m_language=language, m_releasetime=releasetime,
-                              m_score=score, m_cover=m_poster, m_linkinfo=m_movie)
-            upData.save()
-            return 'upload success!!'
-        else:
-            return 'the data have wrong'
 
     def movies(self):
         if self.place == 'home':
@@ -417,7 +366,8 @@ class Movies:
             movies = TbMovies.objects.order_by('-m_id')[self.start:self.limit]
             info = []
             for i in movies:
-                ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': i.m_cover, 'classify': i.m_classify,
+                img_path = i.m_cover.replace('PATH_', '%sstatic/movies/img/' % _sysPath)
+                ins = {'id': i.m_id, 'name': i.m_name, 'othername': i.m_othername, 'cover': img_path, 'classify': i.m_classify,
                        'like': i.m_like, 'linkInfo': i.m_linkinfo}
                 info.append(ins)
             return json.dumps(info)
@@ -499,7 +449,7 @@ class Comment:
                     des.close()
                 file = TbHotcomment(h_uid=h_uid, h_comment=h_comment, h_img=imgPath.rstrip(','), h_like=0)
                 file.save()
-                return 'success'
+                return json.dumps('success')
         # except:
         #     return 'error'
 
@@ -569,6 +519,16 @@ class Comment:
         return json.dumps(replyInfo)
         # except:
         #     return 'error'
+
+    def get_hot_onlyreplys(self):
+        replyInfo = []
+        replys = TbHotreply.objects.filter(hr_fromid=self.hr_formId)[self.start:self.limit]
+        for r in replys:
+            user = TbUsers.objects.get(u_id=r.hr_uid)
+            content = {'name': user.u_name, 'uid': user.u_id, 'reply': r.hr_content, 'time': str(r.hr_time),
+                       'id': r.hr_id}
+            replyInfo.append(content)
+        return json.dumps(replyInfo)
 
     def do_comment_like(self):
         comment = TbHotcomment.objects.get(h_id=self.comment_id)

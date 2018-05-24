@@ -8,7 +8,7 @@ from django.conf import settings
 from django.apps import AppConfig
 from django.core.files import File
 from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment, TbHotcomment, TbHotreply
-from App.tools import del_comment, del_hot_comment, del_hot_reply, del_reply, del_user
+from App.tools import del_comment, del_hot_comment, del_hot_reply, del_reply, del_user, MovieForm, setpath, del_movie, is_admin
 import Love.settings
 import json
 import time
@@ -95,4 +95,58 @@ class Admin:
             else:
                 return json.dumps('reply error')
         else:
+            return json.dumps('comment error')
+
+    def del_hot_reply(self):
+        if del_hot_reply('hr_id', self.id):
+            return json.dumps('success')
+        else:
             return json.dumps('reply error')
+
+    def upload_movie(self):
+        mf = MovieForm(self.post, self.files)
+        if mf.is_valid():
+            movieName = mf.cleaned_data['movieName']
+            otherName = mf.cleaned_data['otherName']
+            actors = mf.cleaned_data['actors']
+            director = mf.cleaned_data['director']
+            classify = mf.cleaned_data['classify']
+            area = mf.cleaned_data['area']
+            language = mf.cleaned_data['language']
+            releasetime = mf.cleaned_data['releasetime']
+            score = mf.cleaned_data['score']
+            size = mf.cleaned_data['size']
+            type = mf.cleaned_data['type']
+            img = self.files.getlist('m_img')
+            video = self.files.getlist('m_movie')
+            try:
+                img_path = setpath(img[0].name)
+                img_des = open('./App/static/movies/img/' + img_path, 'wb+')
+                for chunk in img[0].chunks():
+                    img_des.write(chunk)
+                img_des.close()
+                video_path = setpath(video[0].name)
+                video_des = open('./App/static/movies/video/' + video_path, 'wb+')
+                for chunk in video[0].chunks():
+                    video_des.write(chunk)
+                video_des.close()
+                video_path = '%s<<%s<<PATH_%s' % (size, type, video_path)
+                img_path = 'PATH_%s' % img_path
+                uploadMovie = TbMovies(m_name=movieName, m_othername=otherName, m_actor=actors, m_director=director,
+                              m_classify=classify, m_area=area, m_language=language, m_releasetime=releasetime,
+                              m_score=score, m_cover=img_path, m_linkinfo=video_path)
+                uploadMovie.save()
+                return json.dumps('success')
+            except:
+                return json.dumps('upload file error')
+        else:
+            return json.dumps('upload data error')
+
+    def del_movies(self):
+        if is_admin(self.token):
+            if del_movie(self.id):
+                return json.dumps('success')
+            else:
+                return json.dumps('del error')
+        else:
+            return json.dumps('token error')

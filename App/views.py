@@ -100,12 +100,25 @@ def delete_user(request):
     else:
         return response_def('token error')
 
+
 @csrf_exempt
 def delete_comment(request):
     if request.POST:
         if request.POST['type'] == 'hot':
-            del_hot = Admin(token=request.POST['token'], id=request.POST['id'])
-            return response_def(del_hot.del_hot_comment())
+            if request.POST['classify'] == 'comment':
+                del_hot_c = Admin(token=request.POST['token'], id=request.POST['id'])
+                return response_def(del_hot_c.del_hot_comment())
+            if request.POST['classify'] == 'reply':
+                del_hot_r = Admin(token=request.POST['token'], id=request.POST['id'])
+                return response_def(del_hot_r.del_hot_reply())
+
+
+@csrf_exempt
+def delete_movies(request):
+    if request.POST:
+        del_movie = Admin(token=request.POST['token'], id=request.POST['id'])
+        return response_def(del_movie.del_movies())
+
 
 @csrf_exempt
 def token_login(request):
@@ -176,7 +189,7 @@ class UserForm(forms.Form):
 @csrf_exempt
 def upload_movie(request):
     if request.method == 'POST':
-        m_upload_movie = Movies(post=request.POST, files=request.FILES)
+        m_upload_movie = Admin(post=request.POST, files=request.FILES)
         return response_def(m_upload_movie.upload_movie())
         # mf = MovieForm(request.POST, request.FILES)
         # if mf.is_valid():
@@ -271,6 +284,9 @@ def get_hot_comment(request):
         if request.GET['type'] == 'comment':
             hot_comments = Comment(u_id=request.GET['u_id'], limit=request.GET['limit'], start=request.GET['start'])
             return response_def(hot_comments.get_hot_comment())
+        elif request.GET['type'] == 'onlyReply':
+            hot_onlyreplys = Comment(limit=request.GET['limit'], start=request.GET['start'], hr_formId=request.GET['hr_formId'])
+            return response_def(hot_onlyreplys.get_hot_onlyreplys())
         else:
             hot_replys = Comment(u_id=request.GET['u_id'], limit=request.GET['limit'], start=request.GET['start'],
                                  hr_formId=request.GET['hr_formId'])

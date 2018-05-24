@@ -5,8 +5,13 @@ from django.test import TestCase
 from django.http import HttpResponse
 from App.models import TbMovies, TbUsers, TbVideo, TbReply, TbComment, TbHotcomment, TbHotreply
 import os
+from django import forms
+import time
+import hashlib
+import random
 # Create your tests here.
 
+_sysPath = 'http//:localhost:8000/'
 
 def response_def(func):
     func = func
@@ -79,3 +84,66 @@ def del_comment(type, id):
         return True
     except:
         return False
+
+
+def del_movie(id):
+    try:
+        movie = TbMovies.objects.filter(m_id=id)
+        for h in movie:
+            path = h.m_linkinfo.split('<<')[2]
+            v_file = 'App/static/movies/video/%s' % path.replace('PATH_', '')
+            if os.path.exists(v_file):
+                os.remove(v_file)
+            i_file = 'App/static/movies/img/%s' % h.m_cover.replace('PATH_', '')
+            if os.path.exists(i_file):
+                os.remove(i_file)
+        movie.delete()
+        return True
+    except:
+        return False
+
+
+def is_admin(token):
+    try:
+        token = TbUsers.objects.get(token=token)
+        if token.token:
+            return True
+        else:
+            return False
+    except:
+        return False
+
+
+def setpath(name):
+    fn = time.strftime('%Y%m%d%H%M%S')
+    rd = random.randint(0, 100)
+    rs = random.randint(0, 9)
+    return '%s%s%s%s' % (fn, rs, rd, os.path.splitext(name)[1])
+
+
+def send_email(username, mail):
+    rs = random.sample('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 4)
+    rs = ''.join(rs)
+    msg = u'%s你好：<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你的随机验证码为：' \
+          u'<a style="color:red">%s</a><span style="font-size:10px">（忽略大小写）</span>' % (username, rs)
+    send_mail(u'邮箱验证码', 'actions', settings.EMAIL_HOST_USER,
+              [mail],
+              html_message=msg
+              )
+    return rs
+
+
+class MovieForm(forms.Form):
+    movieName = forms.CharField()
+    otherName = forms.CharField()
+    actors = forms.CharField()
+    director = forms.CharField()
+    classify = forms.CharField()
+    area = forms.CharField()
+    language = forms.CharField()
+    releasetime = forms.CharField()
+    score = forms.CharField()
+    size = forms.CharField()
+    type = forms.CharField()
+    # m_poster = forms.FileField()
+    # m_movie = forms.FileField()
